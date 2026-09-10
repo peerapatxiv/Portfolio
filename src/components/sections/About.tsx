@@ -1,6 +1,9 @@
+"use client";
+
+import { useRef } from "react";
+import { motion, useInView } from "motion/react";
 import { About as AboutType, Languages as LanguagesType } from "@/types/portfolio";
-import SectionHeading from "@/components/ui/SectionHeading";
-import FadeIn from "@/components/ui/FadeIn";
+import { EASE, DUR, staggerContainer, fadeUpItem } from "@/lib/motion";
 
 interface AboutProps {
   data: AboutType;
@@ -8,27 +11,52 @@ interface AboutProps {
 }
 
 export default function About({ data, languages }: AboutProps) {
+  const headingRef = useRef<HTMLDivElement>(null);
+  const headingInView = useInView(headingRef, { once: true, margin: "-5% 0px" });
+
+  const bioRef = useRef<HTMLDivElement>(null);
+  const bioInView = useInView(bioRef, { once: true, margin: "-10% 0px" });
+
+  const langRef = useRef<HTMLDivElement>(null);
+  const langInView = useInView(langRef, { once: true, margin: "-10% 0px" });
+
   return (
     <section
       id="about"
       className="py-24 px-6 max-w-6xl mx-auto"
       style={{ borderTop: "1px solid var(--border)" }}
     >
-      <FadeIn>
-        <SectionHeading label={data.profileTitle} title="About" />
-      </FadeIn>
+      <motion.div
+        ref={headingRef}
+        variants={staggerContainer(0.1)}
+        initial="hidden"
+        animate={headingInView ? "show" : "hidden"}
+        className="mb-14"
+      >
+        <motion.p variants={fadeUpItem()} className="label-xs mb-3" style={{ color: "var(--fg-muted)" }}>
+          {data.profileTitle}
+        </motion.p>
+        <motion.h2 variants={fadeUpItem(DUR.emphasis)} className="text-3xl font-bold tracking-tight" style={{ color: "var(--fg)" }}>
+          About
+        </motion.h2>
+      </motion.div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-        {/* Bio */}
-        <FadeIn>
+        {/* Bio — enters from left */}
+        <motion.div
+          ref={bioRef}
+          initial={{ opacity: 0, x: -20 }}
+          animate={bioInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+          transition={{ duration: DUR.emphasis, ease: EASE.out }}
+        >
           <p className="text-[16px] leading-relaxed" style={{ color: "var(--fg-secondary)" }}>
             {data.bio}
           </p>
 
-          <div className="mt-8 space-y-2">
+          <div className="mt-8 space-y-3">
             <a
               href={`mailto:${data.email}`}
-              className="flex items-center gap-3 group w-fit transition-opacity hover:opacity-70"
+              className="flex items-center gap-3 group w-fit transition-opacity hover:opacity-60"
             >
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" style={{ color: "var(--fg-muted)" }}>
                 <path d="M1 3.5L7 7.5L13 3.5M1 3.5H13V11.5H1V3.5Z" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
@@ -46,28 +74,38 @@ export default function About({ data, languages }: AboutProps) {
               </span>
             </div>
           </div>
-        </FadeIn>
+        </motion.div>
 
-        {/* Languages */}
-        <FadeIn delay={120}>
+        {/* Languages — enters from right (opposite direction) */}
+        <motion.div
+          ref={langRef}
+          initial={{ opacity: 0, x: 20 }}
+          animate={langInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
+          transition={{ duration: DUR.emphasis, ease: EASE.out, delay: 0.1 }}
+        >
+          <p className="label-xs mb-6" style={{ color: "var(--fg-muted)" }}>
+            {languages.title}
+          </p>
           <div>
-            <p className="label-xs mb-6" style={{ color: "var(--fg-muted)" }}>
-              {languages.title}
-            </p>
-            <div className="space-y-4">
-              {languages.items.map((lang, i) => (
-                <div key={i} className="flex items-center justify-between py-3" style={{ borderBottom: "1px solid var(--border)" }}>
-                  <span className="text-[14px] font-semibold" style={{ color: "var(--fg)" }}>
-                    {lang.name}
-                  </span>
-                  <span className="text-[12px]" style={{ color: "var(--fg-muted)" }}>
-                    {lang.level}
-                  </span>
-                </div>
-              ))}
-            </div>
+            {languages.items.map((lang, i) => (
+              <motion.div
+                key={i}
+                className="flex items-center justify-between py-4"
+                style={{ borderBottom: "1px solid var(--border)" }}
+                initial={{ opacity: 0, y: 12 }}
+                animate={langInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+                transition={{ duration: DUR.normal, ease: EASE.out, delay: 0.18 + i * 0.08 }}
+              >
+                <span className="text-[15px] font-semibold" style={{ color: "var(--fg)" }}>
+                  {lang.name}
+                </span>
+                <span className="text-[12px]" style={{ color: "var(--fg-muted)" }}>
+                  {lang.level}
+                </span>
+              </motion.div>
+            ))}
           </div>
-        </FadeIn>
+        </motion.div>
       </div>
     </section>
   );
