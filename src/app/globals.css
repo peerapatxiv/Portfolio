@@ -1,65 +1,140 @@
 @import "tailwindcss";
 
-@theme inline {
+/* ─── Design tokens ──────────────────────────────────────────── */
+:root {
+  --bg: #F7F7F5;
+  --bg-subtle: #EFEFE9;
+  --bg-card: #FFFFFF;
+  --fg: #111110;
+  --fg-secondary: #6B6B63;
+  --fg-muted: #9B9B93;
+  --border: #E4E4DE;
+  --border-strong: #C8C8C2;
+  --accent: #111110;
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  --radius-sm: 4px;
+  --radius: 8px;
+  --radius-lg: 12px;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.45, 0, 0.55, 1);
+}
+
+@theme inline {
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --color-bg: var(--bg);
+  --color-fg: var(--fg);
+}
+
+/* ─── Dark mode ──────────────────────────────────────────────── */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #111110;
+    --bg-subtle: #1A1A18;
+    --bg-card: #1E1E1C;
+    --fg: #F2F2EF;
+    --fg-secondary: #A8A89F;
+    --fg-muted: #6B6B63;
+    --border: #2A2A28;
+    --border-strong: #3A3A38;
+    --accent: #F2F2EF;
+  }
+}
+
+/* ─── Base ───────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background: #FAFAF9;
-  color: #111110;
+  background: var(--bg);
+  color: var(--fg);
   font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+  overflow-x: hidden;
 }
 
 ::selection {
-  background: #111110;
-  color: #FAFAF9;
+  background: var(--fg);
+  color: var(--bg);
 }
 
-/* Fade-in animation for sections */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+/* ─── Scrollbar ──────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 2px; }
 
-.animate-fade-in {
-  animation: fadeInUp 0.5s ease forwards;
-}
-
-.section-hidden {
-  opacity: 0;
-  transform: translateY(16px);
-}
-
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 4px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #D4D4CF;
-  border-radius: 2px;
-}
-
-/* Focus styles */
+/* ─── Focus ──────────────────────────────────────────────────── */
 :focus-visible {
-  outline: 2px solid #111110;
+  outline: 2px solid var(--fg);
   outline-offset: 3px;
-  border-radius: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* ─── Typography scale ───────────────────────────────────────── */
+.display-xl {
+  font-size: clamp(3rem, 8vw, 7rem);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+}
+
+.display-lg {
+  font-size: clamp(2rem, 5vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.label-xs {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* ─── Animations ─────────────────────────────────────────────── */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slide-down {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-up    { animation: fade-up   0.6s var(--ease-out) both; }
+.animate-fade-in    { animation: fade-in   0.5s var(--ease-out) both; }
+.animate-slide-down { animation: slide-down 0.3s var(--ease-out) both; }
+
+/* ─── Scroll offset for sticky navbar ───────────────────────── */
+section[id] {
+  scroll-margin-top: 80px;
+}
+
+/* ─── Reduced motion ─────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto; }
 }

@@ -1,32 +1,18 @@
-"use client";
-
-import { useEffect, useRef, useState } from "react";
-
 interface SectionHeadingProps {
-  title: string;
+  label: string;
+  title?: string;
+  className?: string;
 }
 
-export default function SectionHeading({ title }: SectionHeadingProps) {
-  const ref = useRef<HTMLHeadingElement>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setVisible(true); obs.disconnect(); } },
-      { threshold: 0.1 }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-
+export default function SectionHeading({ label, title, className = "" }: SectionHeadingProps) {
   return (
-    <h2
-      ref={ref}
-      className={`text-[10px] font-semibold tracking-[0.2em] text-stone-400 uppercase mb-8 transition-all duration-500 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
-    >
-      {title}
-    </h2>
+    <div className={`mb-12 ${className}`}>
+      <p className="label-xs mb-3" style={{ color: "var(--fg-muted)" }}>{label}</p>
+      {title && (
+        <h2 className="text-3xl font-bold tracking-tight" style={{ color: "var(--fg)" }}>
+          {title}
+        </h2>
+      )}
+    </div>
   );
 }

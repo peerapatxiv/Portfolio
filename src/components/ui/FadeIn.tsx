@@ -6,9 +6,10 @@ interface FadeInProps {
   children: React.ReactNode;
   className?: string;
   delay?: number;
+  once?: boolean;
 }
 
-export default function FadeIn({ children, className = "", delay = 0 }: FadeInProps) {
+export default function FadeIn({ children, className = "", delay = 0, once = true }: FadeInProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
 
@@ -16,18 +17,27 @@ export default function FadeIn({ children, className = "", delay = 0 }: FadeInPr
     const el = ref.current;
     if (!el) return;
     const obs = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setVisible(true); obs.disconnect(); } },
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          if (once) obs.disconnect();
+        }
+      },
       { threshold: 0.05 }
     );
     obs.observe(el);
     return () => obs.disconnect();
-  }, []);
+  }, [once]);
 
   return (
     <div
       ref={ref}
-      className={`transition-all duration-500 ${className} ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
-      style={{ transitionDelay: `${delay}ms` }}
+      className={className}
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translateY(0)" : "translateY(18px)",
+        transition: `opacity 0.55s var(--ease-out) ${delay}ms, transform 0.55s var(--ease-out) ${delay}ms`,
+      }}
     >
       {children}
     </div>

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none">
+  <!-- P left stem -->
+  <rect x="4" y="6" width="3.5" height="28" fill="currentColor"/>
+  <!-- P left bowl top bar -->
+  <rect x="4" y="6" width="13" height="3.5" fill="currentColor"/>
+  <!-- P left bowl mid bar -->
+  <rect x="4" y="17.25" width="13" height="3.5" fill="currentColor"/>
+  <!-- P left bowl right stem -->
+  <rect x="13.5" y="6" width="3.5" height="14.75" fill="currentColor"/>
+
+  <!-- P right stem -->
+  <rect x="22.5" y="6" width="3.5" height="28" fill="currentColor"/>
+  <!-- P right bowl top bar -->
+  <rect x="22.5" y="6" width="13" height="3.5" fill="currentColor"/>
+  <!-- P right bowl mid bar -->
+  <rect x="22.5" y="17.25" width="13" height="3.5" fill="currentColor"/>
+  <!-- P right bowl right stem -->
+  <rect x="32" y="6" width="3.5" height="14.75" fill="currentColor"/>
+
+  <!-- slash accent -->
+  <rect x="18.5" y="30" width="3" height="4" rx="1" fill="currentColor" opacity="0.4"/>
+</svg>

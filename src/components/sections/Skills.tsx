@@ -9,16 +9,25 @@ interface SkillsProps {
 
 export default function Skills({ data }: SkillsProps) {
   return (
-    <section id="skills" className="mb-20">
-      <SectionHeading title={data.title} />
-      <div className="space-y-7">
+    <section
+      id="skills"
+      className="py-24 px-6 max-w-6xl mx-auto"
+      style={{ borderTop: "1px solid var(--border)" }}
+    >
+      <FadeIn>
+        <SectionHeading label={data.title} title="Skills" />
+      </FadeIn>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {data.categories.map((cat, i) => (
-          <FadeIn key={i} delay={i * 60}>
+          <FadeIn key={i} delay={i * 70}>
             <div>
-              <div className="text-[11px] font-semibold tracking-wider text-stone-400 uppercase mb-3">{cat.title}</div>
+              <p className="label-xs mb-4" style={{ color: "var(--fg-muted)" }}>
+                {cat.title}
+              </p>
               <div className="flex flex-wrap gap-1.5">
                 {cat.items.map((skill, j) => (
-                  <Tag key={j} label={skill} />
+                  <Tag key={j} label={skill} variant="default" />
                 ))}
               </div>
             </div>

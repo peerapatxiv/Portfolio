@@ -1,11 +1,12 @@
-interface ExternalLinkProps {
+import { AnchorHTMLAttributes } from "react";
+
+interface ExternalLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   href: string;
   children: React.ReactNode;
-  className?: string;
   ariaLabel?: string;
 }
 
-export default function ExternalLink({ href, children, className = "", ariaLabel }: ExternalLinkProps) {
+export default function ExternalLink({ href, children, ariaLabel, ...rest }: ExternalLinkProps) {
   if (!href) return null;
   return (
     <a
@@ -13,7 +14,7 @@ export default function ExternalLink({ href, children, className = "", ariaLabel
       target="_blank"
       rel="noopener noreferrer"
       aria-label={ariaLabel}
-      className={className}
+      {...rest}
     >
       {children}
     </a>

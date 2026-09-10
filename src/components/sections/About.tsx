@@ -1,49 +1,74 @@
-import { About as AboutType } from "@/types/portfolio";
+import { About as AboutType, Languages as LanguagesType } from "@/types/portfolio";
+import SectionHeading from "@/components/ui/SectionHeading";
 import FadeIn from "@/components/ui/FadeIn";
 
 interface AboutProps {
   data: AboutType;
+  languages: LanguagesType;
 }
 
-export default function About({ data }: AboutProps) {
+export default function About({ data, languages }: AboutProps) {
   return (
-    <section id="about" className="mb-20">
+    <section
+      id="about"
+      className="py-24 px-6 max-w-6xl mx-auto"
+      style={{ borderTop: "1px solid var(--border)" }}
+    >
       <FadeIn>
-        <p className="text-[15px] leading-relaxed text-stone-700 max-w-prose">
-          {data.bio}
-        </p>
+        <SectionHeading label={data.profileTitle} title="About" />
+      </FadeIn>
 
-        <div className="mt-8 space-y-1">
-          <a
-            href={`mailto:${data.email}`}
-            className="flex items-center gap-2 text-[13px] text-stone-500 hover:text-stone-900 transition-colors group w-fit"
-          >
-            <svg className="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-            </svg>
-            <span className="group-hover:underline underline-offset-2">{data.email}</span>
-          </a>
-          <a
-            href={`tel:${data.phone.replace(/\s/g, "")}`}
-            className="flex items-center gap-2 text-[13px] text-stone-500 hover:text-stone-900 transition-colors group w-fit"
-          >
-            <svg className="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-            </svg>
-            <span className="group-hover:underline underline-offset-2">{data.phone}</span>
-          </a>
-          <div className="flex items-start gap-2 text-[13px] text-stone-400 pt-1">
-            <svg className="w-3.5 h-3.5 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-            </svg>
-            <div>
-              <div>{data.address.line2}</div>
-              <div>{data.address.line3}</div>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+        {/* Bio */}
+        <FadeIn>
+          <p className="text-[16px] leading-relaxed" style={{ color: "var(--fg-secondary)" }}>
+            {data.bio}
+          </p>
+
+          <div className="mt-8 space-y-2">
+            <a
+              href={`mailto:${data.email}`}
+              className="flex items-center gap-3 group w-fit transition-opacity hover:opacity-70"
+            >
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" style={{ color: "var(--fg-muted)" }}>
+                <path d="M1 3.5L7 7.5L13 3.5M1 3.5H13V11.5H1V3.5Z" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              <span className="text-[13px] group-hover:underline underline-offset-2" style={{ color: "var(--fg-secondary)" }}>
+                {data.email}
+              </span>
+            </a>
+            <div className="flex items-center gap-3">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" style={{ color: "var(--fg-muted)" }}>
+                <path d="M7 1C4.79 1 3 2.79 3 5c0 3.25 4 8 4 8s4-4.75 4-8c0-2.21-1.79-4-4-4Zm0 5.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Z" fill="currentColor" />
+              </svg>
+              <span className="text-[13px]" style={{ color: "var(--fg-secondary)" }}>
+                {data.address.line2}, {data.address.line3}
+              </span>
             </div>
           </div>
-        </div>
-      </FadeIn>
+        </FadeIn>
+
+        {/* Languages */}
+        <FadeIn delay={120}>
+          <div>
+            <p className="label-xs mb-6" style={{ color: "var(--fg-muted)" }}>
+              {languages.title}
+            </p>
+            <div className="space-y-4">
+              {languages.items.map((lang, i) => (
+                <div key={i} className="flex items-center justify-between py-3" style={{ borderBottom: "1px solid var(--border)" }}>
+                  <span className="text-[14px] font-semibold" style={{ color: "var(--fg)" }}>
+                    {lang.name}
+                  </span>
+                  <span className="text-[12px]" style={{ color: "var(--fg-muted)" }}>
+                    {lang.level}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </FadeIn>
+      </div>
     </section>
   );
 }
