@@ -11,6 +11,7 @@ export interface About {
   address: Address;
   email: string;
   phone: string;
+  linkedin?: string;
   profileTitle: string;
   bio: string;
 }

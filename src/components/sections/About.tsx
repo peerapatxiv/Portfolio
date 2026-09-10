@@ -73,6 +73,22 @@ export default function About({ data, languages }: AboutProps) {
                 {data.address.line2}, {data.address.line3}
               </span>
             </div>
+            {data.linkedin && (
+              <a
+                href={data.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 group w-fit transition-opacity hover:opacity-60"
+                aria-label="LinkedIn profile"
+              >
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" style={{ color: "var(--fg-muted)" }}>
+                  <path d="M1.5 4.5h2.5v8H1.5v-8ZM2.75 3.5a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5ZM5.5 4.5H8v1.1c.4-.7 1.3-1.1 2.1-1.1C12 4.5 12.5 5.7 12.5 7.5v5H10V8c0-.8-.3-1.5-1-1.5s-1 .7-1 1.5v4.5H5.5v-8Z" fill="currentColor" />
+                </svg>
+                <span className="text-[13px] group-hover:underline underline-offset-2" style={{ color: "var(--fg-secondary)" }}>
+                  LinkedIn
+                </span>
+              </a>
+            )}
           </div>
         </motion.div>
 

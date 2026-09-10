@@ -21,9 +21,23 @@ export default function Footer({ data }: FooterProps) {
           </span>
         </div>
 
-        <p className="text-[11px]" style={{ color: "var(--fg-muted)" }}>
-          © {year} · {data.address.line2}
-        </p>
+        <div className="flex items-center gap-4">
+          {data.linkedin && (
+            <a
+              href={data.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[11px] transition-opacity hover:opacity-60"
+              style={{ color: "var(--fg-muted)" }}
+              aria-label="LinkedIn profile"
+            >
+              LinkedIn
+            </a>
+          )}
+          <p className="text-[11px]" style={{ color: "var(--fg-muted)" }}>
+            © {year} · {data.address.line2}
+          </p>
+        </div>
       </div>
     </footer>
   );
