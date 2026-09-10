@@ -14,7 +14,6 @@
     "profileTitle": "ABOUT",
     "bio": "Software Developer with experience developing web applications, enterprise integration solutions, and interactive digital experiences. Passionate about writing clean, maintainable code and continuously learning new technologies."
   },
-
   "experience": {
     "title": "EXPERIENCE",
     "items": [
@@ -40,7 +39,6 @@
       }
     ]
   },
-
   "languages": {
     "title": "LANGUAGES",
     "items": [
@@ -54,7 +52,6 @@
       }
     ]
   },
-
   "education": {
     "title": "EDUCATION",
     "items": [
@@ -72,7 +69,6 @@
       }
     ]
   },
-
   "skills": {
     "title": "SKILLS",
     "categories": [
@@ -125,7 +121,6 @@
       }
     ]
   },
-
   "projects": {
     "title": "WORK & PROJECTS",
     "description": "Here are some of my projects that showcase my skills and experience in software development. Each project highlights different aspects of my work, from front-end development to full-stack applications.",
@@ -222,10 +217,15 @@
       }
     ]
   },
-
   "certificates": {
     "title": "CERTIFICATES",
     "items": [
+      {
+        "title": "Claude Code in Action",
+        "period": "Aug 2026",
+        "description": "Completed hands-on training in AI-assisted software engineering using Claude Code, covering agentic workflows, multi-file editing, test-driven development, and integrating Claude into real-world engineering tasks.",
+        "link": "https://verify.skilljar.com/c/k2xhxppge6wc"
+      },
       {
         "title": "Google UX Design Specialization",
         "period": "May - Aug 2022 · 4 months",
