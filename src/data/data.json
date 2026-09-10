@@ -1,0 +1,242 @@
+{
+  "about": {
+    "firstname": "PEERAPAT",
+    "lastname": "PADTAWARO",
+    "role": "Software Developer",
+    "address": {
+      "line1": "B9 64/2 The Room by SPK",
+      "line2": "Phahonyothin Soi 15, Phaya Thai",
+      "line3": "Bangkok 10400, Thailand"
+    },
+    "email": "peerapat.xiv@gmail.com",
+    "phone": "+66 (0) 09 174 5520",
+    "profileTitle": "ABOUT",
+    "bio": "Software Developer with experience developing web applications, enterprise integration solutions, and interactive digital experiences. Passionate about writing clean, maintainable code and continuously learning new technologies."
+  },
+
+  "experience": {
+    "title": "EXPERIENCE",
+    "items": [
+      {
+        "company": "SCB TechX",
+        "position": "Associate Software Engineer · Integration",
+        "period": "Jun 2026 - Present",
+        "location": "Bangkok, Thailand",
+        "link": "",
+        "description": "Develop and maintain enterprise integration solutions using API Gateway. Design, implement, and support secure, scalable API services while collaborating with cross-functional teams to ensure reliable system integration and high availability."
+      },
+      {
+        "company": "House of Dev Technology",
+        "position": "Software Developer",
+        "period": "Sep 2024 - Apr 2026",
+        "location": "Bangkok, Thailand",
+        "link": "https://www.figma.com/proto/zL8oeKqRLu2jqVApfUGLQP/Work?node-id=1045-144&node-type=canvas&t=1WS5wJgo7r849t1J-1&scaling=contain&content-scaling=fixed&page-id=953%3A227",
+        "previousRole": {
+          "position": "Software Developer Intern",
+          "period": "Jun 2024 - Aug 2024"
+        },
+        "description": "Developed and maintained web applications, interactive experiences, and digital solutions for clients across various industries. Worked closely with designers, backend engineers, and project stakeholders to build responsive, user-friendly, and reliable products while contributing to feature development, performance optimization, and production deployments."
+      }
+    ]
+  },
+
+  "languages": {
+    "title": "LANGUAGES",
+    "items": [
+      {
+        "name": "English",
+        "level": "Professional working proficiency"
+      },
+      {
+        "name": "Thai",
+        "level": "Native or bilingual proficiency"
+      }
+    ]
+  },
+
+  "education": {
+    "title": "EDUCATION",
+    "items": [
+      {
+        "institution": "King Mongkut's University of Technology Thonburi",
+        "major": "Computer Engineering",
+        "degree": "Bachelor of Engineering (BE)",
+        "period": "2021 - 2025"
+      },
+      {
+        "institution": "Sriboonruang Wittayakarn School",
+        "major": "Science, Mathematics, Technology and Environment (SMTE)",
+        "degree": "High School Diploma",
+        "period": "2018 - 2021"
+      }
+    ]
+  },
+
+  "skills": {
+    "title": "SKILLS",
+    "categories": [
+      {
+        "title": "Frontend",
+        "items": [
+          "Vue.js",
+          "Nuxt.js",
+          "React",
+          "Next.js",
+          "TypeScript",
+          "JavaScript",
+          "HTML5",
+          "CSS3",
+          "Tailwind CSS"
+        ]
+      },
+      {
+        "title": "Backend",
+        "items": [
+          "Node.js",
+          "REST API",
+          "API Integration",
+          "Authentication",
+          "MySQL",
+          "PostgreSQL"
+        ]
+      },
+      {
+        "title": "Programming Languages",
+        "items": [
+          "TypeScript",
+          "JavaScript",
+          "Go",
+          "Python",
+          "SQL",
+          "C"
+        ]
+      },
+      {
+        "title": "Concepts",
+        "items": [
+          "Responsive Design",
+          "UI/UX",
+          "System Integration",
+          "Microservices",
+          "RESTful APIs",
+          "Version Control (Git)"
+        ]
+      }
+    ]
+  },
+
+  "projects": {
+    "title": "WORK & PROJECTS",
+    "description": "Here are some of my projects that showcase my skills and experience in software development. Each project highlights different aspects of my work, from front-end development to full-stack applications.",
+    "items": [
+      {
+        "name": "Foremost Mini Game",
+        "period": "Apr 2026",
+        "description": "Developed an interactive mini-game for the grand launch of Foremost Omega Smart Super Gold at Waldorf Astoria Bangkok. Built a gamification experience that transformed attendees into active participants through real-time engagement, seamless UI interactions, and reliable performance. Contributed to an immersive brand experience for families and children throughout the event.",
+        "link": "https://www.linkedin.com/feed/update/urn:li:activity:7459247305041563648/?utm_source=share&utm_medium=member_desktop&rcm=ACoAACW_MtABcc9vVnDVVIEbAtLAogECQKcXwF4"
+      },
+      {
+        "name": "Thailand Gallery Interactive Exhibition",
+        "period": "Apr 2026",
+        "description": "Delivered the interactive exhibition experience for the Thailand Gallery at the Royal Thai Embassy in The Hague. Developed digital interactions across the Queen Room, Rose Room, and Gallery Room to bring exhibition stories to life. Focused on seamless UI, intuitive navigation, and reliable content access to enhance visitor engagement while supporting the integration of Thai cultural heritage, design, and innovation.",
+        "link": "https://www.linkedin.com/feed/update/urn:li:activity:7454506067213934592/?utm_source=share&utm_medium=member_desktop&rcm=ACoAACW_MtABcc9vVnDVVIEbAtLAogECQKcXwF4"
+      },
+      {
+        "name": "Journal Magnetic Attraction",
+        "period": "Jun 2025",
+        "description": "Built a MarTech activation for JOURNAL Body Oil at Siam Paragon. Implemented NFC tap interactions, UI components, and analytics hooks. Worked with design and backend teams to ensure a simple, reliable experience across devices so attendees could easily access event activities.",
+        "link": "https://www.linkedin.com/posts/houseofdevtech_journalbodyoilxppkrit-houseofdev-journal-activity-7376206676137484288-oJ5z?utm_source=share&utm_medium=member_desktop&rcm=ACoAACW_MtABcc9vVnDVVIEbAtLAogECQKcXwF4"
+      },
+      {
+        "name": "NIVEA",
+        "period": "Jun 2025",
+        "description": "Built an interactive display for NIVEA's Luminous630 Skin Glow Serum launch at Nai Lert Park. Implemented the UI and interaction logic to explain Thiamidol®, added simple animations and analytics, and worked with the team to make the experience reliable and easy to use.",
+        "link": "https://www.linkedin.com/posts/houseofdevtech_niveathailand-houseofdev-interactivedisplay-activity-7375859573812883456-SN2p?utm_source=share&utm_medium=member_desktop&rcm=ACoAACW_MtABcc9vVnDVVIEbAtLAogECQKcXwF4"
+      },
+      {
+        "name": "CP-Meiji x House of Dev Technology",
+        "period": "May 2025",
+        "description": "Developed interactive features for CP-Meiji's World Milk Day event, enabling visitors to engage with milk products through innovative digital experiences. Contributed as a developer to making the event memorable and educational.",
+        "link": "https://www.facebook.com/share/v/1ECxGYDcTp/?mibextid=wwXIfr"
+      },
+      {
+        "name": "House of Dev Technology",
+        "period": "Dec 2024",
+        "description": "Designed and developed a landing page showcasing the services and expertise of House of Dev Technology. The website features a modern and professional design, highlighting the company's offerings and providing easy navigation for potential clients.",
+        "link": "https://houseofdev.tech/"
+      },
+      {
+        "name": "Verscan",
+        "period": "Dec 2024 - Mar 2025",
+        "description": "Integrated file upload functionality into the Verscan system and added blog and partner sections to the landing page, along with performance improvements for a better user experience.",
+        "link": "https://www.verscan.com/"
+      },
+      {
+        "name": "Bluuu",
+        "period": "Apr - Sep 2025",
+        "description": "Developed a maid booking platform featuring a user-friendly interface, reservation management, and payment integration for seamless professional cleaning service bookings.",
+        "link": "https://bluuu.co/"
+      },
+      {
+        "name": "Pocumi",
+        "period": "Nov - Dec 2024",
+        "description": "Developed a landing page for the Pocumi product, designed to introduce the solution and highlight how it improves efficiency and tracks procurement movements through a comprehensive and user-friendly experience.",
+        "link": "https://www.pocumi.com/"
+      },
+      {
+        "name": "Crystallyte",
+        "period": "Dec 2024",
+        "description": "Developed a landing page for Crystallyte, showcasing their innovative process for producing high-yield crystalline carbon nanomaterials from sources such as CO₂ and plastic waste.",
+        "link": "https://crystallyte.com/"
+      },
+      {
+        "name": "Greenery of North",
+        "period": "Aug 2024",
+        "description": "Developed a landing page inviting travelers to experience Northern Thailand's rainy season, highlighting lush landscapes, local culture, unique cuisine, creative arts, and activities.",
+        "link": "https://greeneryofnorth.in.th/"
+      },
+      {
+        "name": "INU 2",
+        "period": "Jun - Jul 2025",
+        "description": "Developed a web-based QMS for engineering education, featuring a new UI and expanded tools for TABEE and ABET accreditation, course data management, outcome tracking, and reporting.",
+        "link": "https://github.com/JOKPOON/inu-garden"
+      },
+      {
+        "name": "Tradekub",
+        "period": "Mar - Feb 2023",
+        "description": "Developed a website for online securities trading designed to make stock ordering more convenient for investors. The platform acts as an intermediary between brokers and users and includes real-time stock price tracking and dynamic chart rendering.",
+        "link": "https://github.com/Bukharney/ProjectTradeKub"
+      },
+      {
+        "name": "ModX",
+        "period": "Sep - Dec 2023",
+        "description": "Developed an online shopping platform specifically for the KMUTT bookstore, providing students and faculty with a user-friendly interface to browse and purchase books and educational materials.",
+        "link": "https://github.com/JOKPOON/ModX"
+      },
+      {
+        "name": "Savorly",
+        "period": "Apr - Jul 2024",
+        "description": "Developed Savorly, a comprehensive meal companion designed to help users manage everyday meal planning and make their daily routines more convenient.",
+        "link": "https://www.behance.net/gallery/178419879/Savorly"
+      }
+    ]
+  },
+
+  "certificates": {
+    "title": "CERTIFICATES",
+    "items": [
+      {
+        "title": "Google UX Design Specialization",
+        "period": "May - Aug 2022 · 4 months",
+        "description": "Completed an intensive, hands-on specialization focused on core user experience design principles. Developed expertise in user research, wireframing, prototyping, and interaction design best practices through real-world projects and collaborative assignments.",
+        "link": "https://www.coursera.org/account/accomplishments/specialization/certificate/WCSPYVHZZQSY"
+      },
+      {
+        "title": "Advanced React",
+        "period": "Sep - Dec 2023",
+        "description": "Progressed through the Meta Front-End Developer Professional Certificate, completing 6 out of 9 courses. Acquired advanced skills in building scalable and maintainable React applications, including state management, component architecture, performance optimization, and modern front-end development workflows.",
+        "link": "https://www.coursera.org/account/accomplishments/verify/23N62QT9AYRP"
+      }
+    ]
+  }
+}

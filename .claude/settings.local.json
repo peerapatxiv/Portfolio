@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p /Users/peerapat.padtawaro/Documents/Portfolio/src/data /Users/peerapat.padtawaro/Documents/Portfolio/src/types /Users/peerapat.padtawaro/Documents/Portfolio/src/components/layout /Users/peerapat.padtawaro/Documents/Portfolio/src/components/sections /Users/peerapat.padtawaro/Documents/Portfolio/src/components/ui)",
+      "Bash(cp /Users/peerapat.padtawaro/Documents/Portfolio/data.json /Users/peerapat.padtawaro/Documents/Portfolio/src/data/data.json)",
+      "Bash(npm run *)"
+    ]
+  }
+}
