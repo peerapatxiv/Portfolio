@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
+  <!-- Background -->
+  <rect width="40" height="40" rx="8" fill="#111110"/>
+
+  <!-- Left P: stem -->
+  <rect x="5.5" y="8" width="3" height="22" fill="#F2F2EF"/>
+  <!-- Left P: top bar -->
+  <rect x="5.5" y="8" width="10" height="2.8" fill="#F2F2EF"/>
+  <!-- Left P: mid bar -->
+  <rect x="5.5" y="16.6" width="10" height="2.8" fill="#F2F2EF"/>
+  <!-- Left P: right stem (bowl) -->
+  <rect x="12.5" y="8" width="3" height="11.4" fill="#F2F2EF"/>
+
+  <!-- Right P: stem -->
+  <rect x="21.5" y="8" width="3" height="22" fill="#F2F2EF"/>
+  <!-- Right P: top bar -->
+  <rect x="21.5" y="8" width="10" height="2.8" fill="#F2F2EF"/>
+  <!-- Right P: mid bar -->
+  <rect x="21.5" y="16.6" width="10" height="2.8" fill="#F2F2EF"/>
+  <!-- Right P: right stem (bowl) -->
+  <rect x="28.5" y="8" width="3" height="11.4" fill="#F2F2EF"/>
+</svg>
