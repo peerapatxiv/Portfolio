@@ -2,7 +2,7 @@
   "about": {
     "firstname": "PEERAPAT",
     "lastname": "PADTAWARO",
-    "role": "Software Developer",
+    "role": "Software Engineer",
     "address": {
       "line1": "B9 64/2 The Room by SPK",
       "line2": "Phahonyothin Soi 15, Phaya Thai",
@@ -12,7 +12,7 @@
     "phone": "+66 (0) 09 174 5520",
     "linkedin": "https://www.linkedin.com/in/peerapatpadt/",
     "profileTitle": "ABOUT",
-    "bio": "Software Developer with experience developing web applications, enterprise integration solutions, and interactive digital experiences. Passionate about writing clean, maintainable code and continuously learning new technologies."
+    "bio": "Software engineer on the integration team at SCB TechX, building and supporting API services behind an API gateway. Before that I spent two years building web apps and interactive brand experiences. I care about clean, maintainable code and tools that make complex systems easier to work with."
   },
   "experience": {
     "title": "EXPERIENCE",
@@ -37,7 +37,8 @@
         },
         "description": "Developed and maintained web applications, interactive experiences, and digital solutions for clients across various industries. Worked closely with designers, backend engineers, and project stakeholders to build responsive, user-friendly, and reliable products while contributing to feature development, performance optimization, and production deployments."
       }
-    ]
+    ],
+    "description": "From intern to full-time developer at House of Dev Technology, then on to API integration at SCB TechX."
   },
   "languages": {
     "title": "LANGUAGES",
@@ -73,32 +74,44 @@
     "title": "SKILLS",
     "categories": [
       {
-        "title": "Frontend",
+        "title": "Integration & APIs",
+        "description": "What I work on every day at SCB TechX.",
         "items": [
-          "Vue.js",
-          "Nuxt.js",
+          "Kong Gateway",
+          "API Gateway",
+          "REST APIs",
+          "API authentication & security",
+          "Declarative configuration",
+          "System integration",
+          "Microservices"
+        ]
+      },
+      {
+        "title": "Frontend",
+        "description": "Web apps, landing pages and interactive event experiences.",
+        "items": [
           "React",
           "Next.js",
-          "TypeScript",
-          "JavaScript",
-          "HTML5",
-          "CSS3",
-          "Tailwind CSS"
+          "Vue.js",
+          "Nuxt.js",
+          "Tailwind CSS",
+          "HTML & CSS",
+          "Responsive design",
+          "UI/UX"
         ]
       },
       {
-        "title": "Backend",
+        "title": "Backend & data",
+        "description": "Services and databases behind the interfaces.",
         "items": [
           "Node.js",
-          "REST API",
-          "API Integration",
-          "Authentication",
-          "MySQL",
-          "PostgreSQL"
+          "PostgreSQL",
+          "MySQL"
         ]
       },
       {
-        "title": "Programming Languages",
+        "title": "Languages",
+        "description": "",
         "items": [
           "TypeScript",
           "JavaScript",
@@ -109,117 +122,219 @@
         ]
       },
       {
-        "title": "Concepts",
+        "title": "AI-assisted development",
+        "description": "Using AI tools to plan, write and review code faster.",
         "items": [
-          "Responsive Design",
-          "UI/UX",
-          "System Integration",
-          "Microservices",
-          "RESTful APIs",
-          "Version Control (Git)"
+          "AI-assisted coding",
+          "Prompt engineering",
+          "Agentic workflows",
+          "AI capabilities & limitations",
+          "Claude Code"
+        ]
+      },
+      {
+        "title": "Tools & DevOps",
+        "description": "",
+        "items": [
+          "Git",
+          "GitHub Actions",
+          "Docker",
+          "Vite",
+          "Figma"
         ]
       }
-    ]
+    ],
+    "description": "Integration work by day, with a frontend background I still use for tools like Kong Manager."
   },
   "projects": {
     "title": "WORK & PROJECTS",
-    "description": "Here are some of my projects that showcase my skills and experience in software development. Each project highlights different aspects of my work, from front-end development to full-stack applications.",
+    "description": "From a Kong Gateway management tool to interactive brand experiences for live events in Bangkok and The Hague.",
     "items": [
+      {
+        "name": "Kong Manager",
+        "period": "Sep - Oct 2026",
+        "description": "Built a browser-based tool for viewing and editing Kong Gateway configuration. Supports editing declarative config files locally, managing services, routes, consumers, credentials and plugins live through the Kong Admin API, and comparing two configs to see what was added, removed or changed.",
+        "link": "https://github.com/peerapatxiv/kong-manager",
+        "tags": [
+          "Developer tool",
+          "Open source"
+        ],
+        "featured": true
+      },
       {
         "name": "Foremost Mini Game",
         "period": "Apr 2026",
         "description": "Developed an interactive mini-game for the grand launch of Foremost Omega Smart Super Gold at Waldorf Astoria Bangkok. Built a gamification experience that transformed attendees into active participants through real-time engagement, seamless UI interactions, and reliable performance. Contributed to an immersive brand experience for families and children throughout the event.",
-        "link": "https://www.linkedin.com/feed/update/urn:li:activity:7459247305041563648/?utm_source=share&utm_medium=member_desktop&rcm=ACoAACW_MtABcc9vVnDVVIEbAtLAogECQKcXwF4"
+        "link": "https://www.linkedin.com/feed/update/urn:li:activity:7459247305041563648/?utm_source=share&utm_medium=member_desktop&rcm=ACoAACW_MtABcc9vVnDVVIEbAtLAogECQKcXwF4",
+        "tags": [
+          "Interactive experience",
+          "Event"
+        ],
+        "featured": true
       },
       {
         "name": "Thailand Gallery Interactive Exhibition",
         "period": "Apr 2026",
         "description": "Delivered the interactive exhibition experience for the Thailand Gallery at the Royal Thai Embassy in The Hague. Developed digital interactions across the Queen Room, Rose Room, and Gallery Room to bring exhibition stories to life. Focused on seamless UI, intuitive navigation, and reliable content access to enhance visitor engagement while supporting the integration of Thai cultural heritage, design, and innovation.",
-        "link": "https://www.linkedin.com/feed/update/urn:li:activity:7454506067213934592/?utm_source=share&utm_medium=member_desktop&rcm=ACoAACW_MtABcc9vVnDVVIEbAtLAogECQKcXwF4"
+        "link": "https://www.linkedin.com/feed/update/urn:li:activity:7454506067213934592/?utm_source=share&utm_medium=member_desktop&rcm=ACoAACW_MtABcc9vVnDVVIEbAtLAogECQKcXwF4",
+        "tags": [
+          "Interactive experience",
+          "Exhibition"
+        ],
+        "featured": true
       },
       {
         "name": "Journal Magnetic Attraction",
         "period": "Jun 2025",
         "description": "Built a MarTech activation for JOURNAL Body Oil at Siam Paragon. Implemented NFC tap interactions, UI components, and analytics hooks. Worked with design and backend teams to ensure a simple, reliable experience across devices so attendees could easily access event activities.",
-        "link": "https://www.linkedin.com/posts/houseofdevtech_journalbodyoilxppkrit-houseofdev-journal-activity-7376206676137484288-oJ5z?utm_source=share&utm_medium=member_desktop&rcm=ACoAACW_MtABcc9vVnDVVIEbAtLAogECQKcXwF4"
+        "link": "https://www.linkedin.com/posts/houseofdevtech_journalbodyoilxppkrit-houseofdev-journal-activity-7376206676137484288-oJ5z?utm_source=share&utm_medium=member_desktop&rcm=ACoAACW_MtABcc9vVnDVVIEbAtLAogECQKcXwF4",
+        "tags": [
+          "Interactive experience",
+          "NFC"
+        ],
+        "featured": true
       },
       {
         "name": "NIVEA",
         "period": "Jun 2025",
         "description": "Built an interactive display for NIVEA's Luminous630 Skin Glow Serum launch at Nai Lert Park. Implemented the UI and interaction logic to explain Thiamidol®, added simple animations and analytics, and worked with the team to make the experience reliable and easy to use.",
-        "link": "https://www.linkedin.com/posts/houseofdevtech_niveathailand-houseofdev-interactivedisplay-activity-7375859573812883456-SN2p?utm_source=share&utm_medium=member_desktop&rcm=ACoAACW_MtABcc9vVnDVVIEbAtLAogECQKcXwF4"
+        "link": "https://www.linkedin.com/posts/houseofdevtech_niveathailand-houseofdev-interactivedisplay-activity-7375859573812883456-SN2p?utm_source=share&utm_medium=member_desktop&rcm=ACoAACW_MtABcc9vVnDVVIEbAtLAogECQKcXwF4",
+        "tags": [
+          "Interactive experience",
+          "Event"
+        ],
+        "featured": true
       },
       {
         "name": "CP-Meiji x House of Dev Technology",
         "period": "May 2025",
         "description": "Developed interactive features for CP-Meiji's World Milk Day event, enabling visitors to engage with milk products through innovative digital experiences. Contributed as a developer to making the event memorable and educational.",
-        "link": "https://www.facebook.com/share/v/1ECxGYDcTp/?mibextid=wwXIfr"
+        "link": "https://www.facebook.com/share/v/1ECxGYDcTp/?mibextid=wwXIfr",
+        "tags": [
+          "Interactive experience",
+          "Event"
+        ]
       },
       {
         "name": "House of Dev Technology",
         "period": "Dec 2024",
         "description": "Designed and developed a landing page showcasing the services and expertise of House of Dev Technology. The website features a modern and professional design, highlighting the company's offerings and providing easy navigation for potential clients.",
-        "link": "https://houseofdev.tech/"
+        "link": "https://houseofdev.tech/",
+        "tags": [
+          "Landing page"
+        ]
       },
       {
         "name": "Verscan",
         "period": "Dec 2024 - Mar 2025",
         "description": "Integrated file upload functionality into the Verscan system and added blog and partner sections to the landing page, along with performance improvements for a better user experience.",
-        "link": "https://www.verscan.com/"
+        "link": "https://www.verscan.com/",
+        "tags": [
+          "Web app",
+          "Landing page"
+        ]
       },
       {
         "name": "Bluuu",
         "period": "Apr - Sep 2025",
         "description": "Developed a maid booking platform featuring a user-friendly interface, reservation management, and payment integration for seamless professional cleaning service bookings.",
-        "link": "https://bluuu.co/"
+        "link": "https://bluuu.co/",
+        "tags": [
+          "Web app",
+          "Payments"
+        ],
+        "featured": true
       },
       {
         "name": "Pocumi",
         "period": "Nov - Dec 2024",
         "description": "Developed a landing page for the Pocumi product, designed to introduce the solution and highlight how it improves efficiency and tracks procurement movements through a comprehensive and user-friendly experience.",
-        "link": "https://www.pocumi.com/"
+        "link": "https://www.pocumi.com/",
+        "tags": [
+          "Landing page"
+        ]
       },
       {
         "name": "Crystallyte",
         "period": "Dec 2024",
         "description": "Developed a landing page for Crystallyte, showcasing their innovative process for producing high-yield crystalline carbon nanomaterials from sources such as CO₂ and plastic waste.",
-        "link": "https://crystallyte.com/"
+        "link": "https://crystallyte.com/",
+        "tags": [
+          "Landing page"
+        ]
       },
       {
         "name": "Greenery of North",
         "period": "Aug 2024",
         "description": "Developed a landing page inviting travelers to experience Northern Thailand's rainy season, highlighting lush landscapes, local culture, unique cuisine, creative arts, and activities.",
-        "link": "https://greeneryofnorth.in.th/"
+        "link": "https://greeneryofnorth.in.th/",
+        "tags": [
+          "Landing page"
+        ]
       },
       {
         "name": "INU 2",
         "period": "Jun - Jul 2025",
         "description": "Developed a web-based QMS for engineering education, featuring a new UI and expanded tools for TABEE and ABET accreditation, course data management, outcome tracking, and reporting.",
-        "link": "https://github.com/JOKPOON/inu-garden"
+        "link": "https://github.com/JOKPOON/inu-garden",
+        "tags": [
+          "Web app",
+          "Education"
+        ]
       },
       {
         "name": "Tradekub",
         "period": "Mar - Feb 2023",
         "description": "Developed a website for online securities trading designed to make stock ordering more convenient for investors. The platform acts as an intermediary between brokers and users and includes real-time stock price tracking and dynamic chart rendering.",
-        "link": "https://github.com/Bukharney/ProjectTradeKub"
+        "link": "https://github.com/Bukharney/ProjectTradeKub",
+        "tags": [
+          "Web app",
+          "Finance"
+        ]
       },
       {
         "name": "ModX",
         "period": "Sep - Dec 2023",
         "description": "Developed an online shopping platform specifically for the KMUTT bookstore, providing students and faculty with a user-friendly interface to browse and purchase books and educational materials.",
-        "link": "https://github.com/JOKPOON/ModX"
+        "link": "https://github.com/JOKPOON/ModX",
+        "tags": [
+          "Web app",
+          "E-commerce"
+        ]
       },
       {
         "name": "Savorly",
         "period": "Apr - Jul 2024",
         "description": "Developed Savorly, a comprehensive meal companion designed to help users manage everyday meal planning and make their daily routines more convenient.",
-        "link": "https://www.behance.net/gallery/178419879/Savorly"
+        "link": "https://www.behance.net/gallery/178419879/Savorly",
+        "tags": [
+          "UI/UX",
+          "Mobile app"
+        ]
       }
     ]
   },
   "certificates": {
     "title": "CERTIFICATES",
     "items": [
+      {
+        "title": "AI Capabilities and Limitations",
+        "period": "Oct 2026",
+        "description": "Completed Anthropic's introductory course on how modern AI systems work, covering what large language models do well, where they fall short, and how to apply them responsibly in real-world work.",
+        "link": "https://verify.skilljar.com/c/6u79j3jhn7cu"
+      },
+      {
+        "title": "Claude 101",
+        "period": "Oct 2026",
+        "description": "Learned to use Claude for everyday work tasks, including its core features, effective prompting, and resources for more advanced use cases.",
+        "link": "https://verify.skilljar.com/c/9j84iigbx7me"
+      },
+      {
+        "title": "Introduction to Claude Cowork",
+        "period": "Oct 2026",
+        "description": "Completed hands-on training in working alongside Claude on real files and projects, covering the Cowork task loop, plugins and skills, file and research workflows, and steering multi-step work responsibly.",
+        "link": "https://verify.skilljar.com/c/4jfya5sfouk5"
+      },
       {
         "title": "Claude Code in Action",
         "period": "Aug 2026",
@@ -238,6 +353,7 @@
         "description": "Progressed through the Meta Front-End Developer Professional Certificate, completing 6 out of 9 courses. Acquired advanced skills in building scalable and maintainable React applications, including state management, component architecture, performance optimization, and modern front-end development workflows.",
         "link": "https://www.coursera.org/account/accomplishments/verify/23N62QT9AYRP"
       }
-    ]
+    ],
+    "description": "Courses on AI tools and AI-assisted development, plus earlier work in UX design and React."
   }
 }

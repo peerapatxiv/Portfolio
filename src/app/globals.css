@@ -2,15 +2,18 @@
 
 /* ─── Design tokens ──────────────────────────────────────────── */
 :root {
-  --bg: #F7F7F5;
-  --bg-subtle: #EFEFE9;
+  --bg: #F6F6F3;
+  --bg-subtle: #EDEDE8;
   --bg-card: #FFFFFF;
-  --fg: #111110;
-  --fg-secondary: #6B6B63;
-  --fg-muted: #9B9B93;
-  --border: #E4E4DE;
-  --border-strong: #C8C8C2;
-  --accent: #111110;
+  --fg: #16171B;
+  --fg-secondary: #55575E;
+  --fg-muted: #7C7E85;
+  --border: #E2E2DC;
+  --border-strong: #C6C6C0;
+  /* Cobalt: the one signature color. Used for live/current state, links and focus. */
+  --accent: #2B47D9;
+  --accent-soft: #E6E9FB;
+  --on-accent: #FFFFFF;
 
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
@@ -28,20 +31,23 @@
   --font-mono: var(--font-mono);
   --color-bg: var(--bg);
   --color-fg: var(--fg);
+  --color-accent: var(--accent);
 }
 
 /* ─── Dark mode ──────────────────────────────────────────────── */
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #111110;
-    --bg-subtle: #1A1A18;
-    --bg-card: #1E1E1C;
-    --fg: #F2F2EF;
-    --fg-secondary: #A8A89F;
-    --fg-muted: #6B6B63;
-    --border: #2A2A28;
-    --border-strong: #3A3A38;
-    --accent: #F2F2EF;
+    --bg: #121317;
+    --bg-subtle: #1A1C21;
+    --bg-card: #1D1F25;
+    --fg: #F1F1EE;
+    --fg-secondary: #ABADB4;
+    --fg-muted: #80838B;
+    --border: #2A2C32;
+    --border-strong: #3B3E45;
+    --accent: #8D9CFF;
+    --accent-soft: #1F2442;
+    --on-accent: #10132A;
   }
 }
 
@@ -66,8 +72,8 @@ body {
 }
 
 ::selection {
-  background: var(--fg);
-  color: var(--bg);
+  background: var(--accent);
+  color: var(--on-accent);
 }
 
 /* ─── Scrollbar ──────────────────────────────────────────────── */
@@ -77,7 +83,7 @@ body {
 
 /* ─── Focus ──────────────────────────────────────────────────── */
 :focus-visible {
-  outline: 2px solid var(--fg);
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
   border-radius: var(--radius-sm);
 }
@@ -98,10 +104,17 @@ body {
 }
 
 .label-xs {
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.section-title {
+  font-size: clamp(1.75rem, 3.2vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
 }
 
 /* ─── Animations ─────────────────────────────────────────────── */

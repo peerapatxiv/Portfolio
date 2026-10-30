@@ -1,18 +1,22 @@
+import FadeIn from "@/components/ui/FadeIn";
+
 interface SectionHeadingProps {
-  label: string;
-  title?: string;
+  title: string;
+  description?: string;
   className?: string;
 }
 
-export default function SectionHeading({ label, title, className = "" }: SectionHeadingProps) {
+export default function SectionHeading({ title, description, className = "" }: SectionHeadingProps) {
   return (
-    <div className={`mb-12 ${className}`}>
-      <p className="label-xs mb-3" style={{ color: "var(--fg-muted)" }}>{label}</p>
-      {title && (
-        <h2 className="text-3xl font-bold tracking-tight" style={{ color: "var(--fg)" }}>
-          {title}
-        </h2>
+    <FadeIn className={`mb-12 max-w-2xl ${className}`}>
+      <h2 className="section-title" style={{ color: "var(--fg)" }}>
+        {title}
+      </h2>
+      {description && (
+        <p className="text-[15px] leading-relaxed mt-3" style={{ color: "var(--fg-secondary)" }}>
+          {description}
+        </p>
       )}
-    </div>
+    </FadeIn>
   );
 }

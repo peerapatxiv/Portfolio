@@ -3,11 +3,12 @@
 import { useState, useEffect, useId } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import Logo from "@/components/ui/Logo";
+import data from "@/data/data.json";
 
 const NAV_LINKS = [
   { href: "work",       label: "Work" },
   { href: "experience", label: "Experience" },
-  { href: "about",      label: "About" },
+  { href: "skills",     label: "Skills" },
   { href: "contact",    label: "Contact" },
 ];
 
@@ -105,11 +106,11 @@ export default function Navbar() {
 
           {/* Desktop CTA */}
           <a
-            href="mailto:peerapat.xiv@gmail.com"
-            className="hidden md:inline-flex items-center gap-1.5 text-[12px] font-semibold rounded-full px-4 py-2 transition-opacity hover:opacity-80"
-            style={{ background: "var(--fg)", color: "var(--bg)" }}
+            href={`mailto:${data.about.email}`}
+            className="hidden md:inline-flex items-center gap-1.5 text-[12px] font-semibold rounded-full px-4 py-2 transition-[filter] hover:brightness-110"
+            style={{ background: "var(--accent)", color: "var(--on-accent)" }}
           >
-            Let&apos;s Talk
+            Email me
           </a>
 
           {/* Mobile hamburger */}
@@ -162,15 +163,15 @@ export default function Navbar() {
                 ))}
               </ul>
               <motion.a
-                href="mailto:peerapat.xiv@gmail.com"
+                href={`mailto:${data.about.email}`}
                 className="mt-10 inline-flex text-[13px] font-semibold rounded-full px-5 py-2.5"
-                style={{ background: "var(--fg)", color: "var(--bg)" }}
+                style={{ background: "var(--accent)", color: "var(--on-accent)" }}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.28, duration: 0.3 }}
                 onClick={() => setMenuOpen(false)}
               >
-                Let&apos;s Talk
+                Email me
               </motion.a>
             </nav>
           </motion.div>

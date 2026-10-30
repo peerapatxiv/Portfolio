@@ -4,7 +4,8 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform, useInView } from "motion/react";
 import { Experience as ExperienceType } from "@/types/portfolio";
 import ExternalLink from "@/components/ui/ExternalLink";
-import { EASE, DUR, staggerContainer, fadeUpItem } from "@/lib/motion";
+import SectionHeading from "@/components/ui/SectionHeading";
+import { EASE, DUR } from "@/lib/motion";
 
 interface ExperienceProps {
   data: ExperienceType;
@@ -25,6 +26,7 @@ function TimelineItem({ item, index, isLast }: {
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-15% 0px" });
+  const isCurrent = /present/i.test(item.period);
 
   return (
     <motion.div
@@ -37,15 +39,24 @@ function TimelineItem({ item, index, isLast }: {
       {/* Animated dot */}
       <motion.div
         className="absolute left-0 top-[7px] w-[10px] h-[10px] rounded-full"
-        style={{ background: "var(--fg)", border: "2px solid var(--bg)", zIndex: 1 }}
+        style={{ background: isCurrent ? "var(--accent)" : "var(--fg-muted)", border: "2px solid var(--bg)", zIndex: 1 }}
         initial={{ scale: 0 }}
         animate={inView ? { scale: 1 } : { scale: 0 }}
         transition={{ duration: 0.3, ease: [0.34, 1.56, 0.64, 1], delay: index * 0.12 + 0.15 }}
       />
 
-      {/* Period */}
-      <p className="label-xs mb-3" style={{ color: "var(--fg-muted)" }}>
-        {item.period} · {item.location}
+      <p className="label-xs mb-3 flex flex-wrap items-center gap-x-3 gap-y-1" style={{ color: "var(--fg-muted)" }}>
+        {isCurrent && (
+          <span
+            className="inline-flex items-center gap-1.5 rounded-full px-2 py-0.5 font-semibold"
+            style={{ background: "var(--accent-soft)", color: "var(--accent)" }}
+          >
+            <span className="h-1.5 w-1.5 rounded-full" style={{ background: "var(--accent)" }} aria-hidden="true" />
+            Current
+          </span>
+        )}
+        <span>{item.period}</span>
+        <span>{item.location}</span>
       </p>
 
       {/* Company */}
@@ -64,7 +75,7 @@ function TimelineItem({ item, index, isLast }: {
       {/* Previous role */}
       {item.previousRole && (
         <p className="text-[12px] mb-3" style={{ color: "var(--fg-muted)" }}>
-          Previously: {item.previousRole.position} · {item.previousRole.period}
+          Promoted from {item.previousRole.position} ({item.previousRole.period})
         </p>
       )}
 
@@ -94,9 +105,6 @@ function TimelineItem({ item, index, isLast }: {
 }
 
 export default function Experience({ data }: ExperienceProps) {
-  const headingRef = useRef<HTMLDivElement>(null);
-  const headingInView = useInView(headingRef, { once: true, margin: "-5% 0px" });
-
   const sectionRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -111,21 +119,10 @@ export default function Experience({ data }: ExperienceProps) {
       className="py-24 px-6 max-w-6xl mx-auto"
       style={{ borderTop: "1px solid var(--border)" }}
     >
-      {/* Heading */}
-      <motion.div
-        ref={headingRef}
-        variants={staggerContainer(0.1)}
-        initial="hidden"
-        animate={headingInView ? "show" : "hidden"}
-        className="mb-14"
-      >
-        <motion.p variants={fadeUpItem()} className="label-xs mb-3" style={{ color: "var(--fg-muted)" }}>
-          {data.title}
-        </motion.p>
-        <motion.h2 variants={fadeUpItem(DUR.emphasis)} className="text-3xl font-bold tracking-tight" style={{ color: "var(--fg)" }}>
-          Experience
-        </motion.h2>
-      </motion.div>
+      <SectionHeading
+        title="Experience"
+        description={data.description}
+      />
 
       <div className="max-w-2xl" ref={sectionRef}>
         {/* Animated timeline line overlay */}
@@ -139,7 +136,7 @@ export default function Experience({ data }: ExperienceProps) {
           {/* Foreground line (scroll-animated) */}
           <motion.div
             className="absolute left-[4px] top-[7px] bottom-14 w-px origin-top"
-            style={{ background: "var(--fg)", scaleY: lineScaleY, opacity: 0.6 }}
+            style={{ background: "var(--accent)", scaleY: lineScaleY, opacity: 0.7 }}
             aria-hidden="true"
           />
 

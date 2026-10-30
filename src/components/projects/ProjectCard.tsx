@@ -1,6 +1,3 @@
-"use client";
-
-import { useState } from "react";
 import { ProjectItem } from "@/types/portfolio";
 import ExternalLink from "@/components/ui/ExternalLink";
 
@@ -11,11 +8,7 @@ interface ProjectCardProps {
 function ArrowUpRight() {
   return (
     <svg
-      width="13"
-      height="13"
-      viewBox="0 0 13 13"
-      fill="none"
-      aria-hidden="true"
+      width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"
       className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
     >
       <path d="M2.5 10.5L10.5 2.5M10.5 2.5H5M10.5 2.5V8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -24,44 +17,38 @@ function ArrowUpRight() {
 }
 
 export default function ProjectCard({ item }: ProjectCardProps) {
-  const [hovered, setHovered] = useState(false);
-
   const inner = (
     <article
-      className="group p-4 rounded-lg transition-all duration-200 h-full flex flex-col"
-      style={{
-        background: hovered ? "var(--bg-subtle)" : "transparent",
-        border: `1px solid ${hovered ? "var(--border)" : "var(--border)"}`,
-      }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+      className="group p-5 rounded-xl h-full flex flex-col transition-colors duration-200 hover:border-[var(--border-strong)] hover:bg-[var(--bg-card)]"
+      style={{ border: "1px solid var(--border)" }}
     >
-      <div className="flex items-start justify-between gap-3 mb-2">
-        <h3 className="text-[13px] font-semibold leading-snug" style={{ color: "var(--fg)" }}>
+      <div className="flex items-start justify-between gap-3">
+        <h4
+          className="text-[15px] font-semibold leading-snug transition-colors group-hover:text-[var(--accent)]"
+          style={{ color: "var(--fg)" }}
+        >
           {item.name}
-        </h3>
+        </h4>
         {item.link && (
-          <span className="shrink-0 mt-0.5 transition-colors" style={{ color: hovered ? "var(--fg)" : "var(--fg-muted)" }}>
+          <span className="shrink-0 mt-1 transition-colors group-hover:text-[var(--accent)]" style={{ color: "var(--fg-muted)" }}>
             <ArrowUpRight />
           </span>
         )}
       </div>
-      <p className="label-xs mb-2" style={{ color: "var(--fg-muted)" }}>
+      <p className="label-xs mt-1" style={{ color: "var(--fg-muted)" }}>
         {item.period}
+        {item.tags && item.tags.length > 0 && <> &nbsp;/&nbsp; {item.tags.join(", ")}</>}
       </p>
-      <p className="text-[12px] leading-relaxed flex-1" style={{ color: "var(--fg-secondary)" }}>
+      <p className="text-[13px] leading-relaxed mt-3 flex-1" style={{ color: "var(--fg-secondary)" }}>
         {item.description}
       </p>
     </article>
   );
 
-  if (item.link) {
-    return (
-      <ExternalLink href={item.link} ariaLabel={`View ${item.name}`} className="block h-full">
-        {inner}
-      </ExternalLink>
-    );
-  }
-
-  return inner;
+  if (!item.link) return inner;
+  return (
+    <ExternalLink href={item.link} ariaLabel={`View ${item.name}`} className="block h-full">
+      {inner}
+    </ExternalLink>
+  );
 }

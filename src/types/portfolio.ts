@@ -33,6 +33,7 @@ export interface ExperienceItem {
 
 export interface Experience {
   title: string;
+  description?: string;
   items: ExperienceItem[];
 }
 
@@ -60,11 +61,13 @@ export interface Education {
 
 export interface SkillCategory {
   title: string;
+  description?: string;
   items: string[];
 }
 
 export interface Skills {
   title: string;
+  description?: string;
   categories: SkillCategory[];
 }
 
@@ -73,6 +76,8 @@ export interface ProjectItem {
   period: string;
   description: string;
   link: string;
+  tags?: string[];
+  featured?: boolean;
 }
 
 export interface Projects {
@@ -90,6 +95,7 @@ export interface CertificateItem {
 
 export interface Certificates {
   title: string;
+  description?: string;
   items: CertificateItem[];
 }
 

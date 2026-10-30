@@ -2,16 +2,28 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "motion/react";
-import { About } from "@/types/portfolio";
+import { About, Languages } from "@/types/portfolio";
 import { EASE, DUR } from "@/lib/motion";
 
 interface ContactProps {
   data: About;
+  languages: Languages;
 }
 
 const LINES = ["Let's build", "something", "together."];
 
-export default function Contact({ data }: ContactProps) {
+function Row({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <div className="grid grid-cols-[7rem_1fr] gap-4 py-4" style={{ borderBottom: "1px solid var(--border)" }}>
+      <dt className="text-[13px]" style={{ color: "var(--fg-muted)" }}>{label}</dt>
+      <dd className="text-[15px] min-w-0 break-words" style={{ color: "var(--fg)" }}>{children}</dd>
+    </div>
+  );
+}
+
+const linkClass = "underline decoration-[var(--border-strong)] underline-offset-4 transition-colors hover:text-[var(--accent)] hover:decoration-[var(--accent)]";
+
+export default function Contact({ data, languages }: ContactProps) {
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, margin: "-10% 0px" });
 
@@ -19,79 +31,67 @@ export default function Contact({ data }: ContactProps) {
     <section
       ref={ref}
       id="contact"
-      className="py-32 px-6 max-w-6xl mx-auto"
+      className="py-28 px-6 max-w-6xl mx-auto"
       style={{ borderTop: "1px solid var(--border)" }}
     >
-      <motion.p
-        className="label-xs mb-8"
-        style={{ color: "var(--fg-muted)" }}
-        initial={{ opacity: 0 }}
-        animate={inView ? { opacity: 1 } : { opacity: 0 }}
-        transition={{ duration: DUR.normal, ease: EASE.out }}
-      >
-        Contact
-      </motion.p>
+      <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-16 items-end">
+        <div>
+          {/* Each line slides up from behind a mask */}
+          <h2 className="display-lg mb-8" aria-label="Let's build something together.">
+            {LINES.map((line, i) => (
+              <span key={i} className="block overflow-hidden pb-[0.08em]">
+                <motion.span
+                  className="block"
+                  style={{ color: "var(--fg)" }}
+                  initial={{ y: "110%" }}
+                  animate={inView ? { y: "0%" } : { y: "110%" }}
+                  transition={{ duration: DUR.emphasis, ease: EASE.out, delay: i * 0.1 }}
+                >
+                  {line}
+                </motion.span>
+              </span>
+            ))}
+          </h2>
 
-      {/* Large display text — each line clips in sequentially */}
-      <h2 className="display-lg max-w-2xl mb-8 overflow-hidden" aria-label="Let's build something together.">
-        {LINES.map((line, i) => (
-          <div key={i} className="overflow-hidden">
-            <motion.span
-              className="block"
-              style={{ color: "var(--fg)" }}
-              initial={{ y: "110%" }}
-              animate={inView ? { y: "0%" } : { y: "110%" }}
-              transition={{ duration: DUR.emphasis, ease: EASE.out, delay: i * 0.1 }}
-            >
-              {line}
-            </motion.span>
-          </div>
-        ))}
-      </h2>
+          <p className="text-[16px] mb-10 max-w-md" style={{ color: "var(--fg-secondary)" }}>
+            Have a project, idea or role in mind? I&apos;d love to hear about it.
+          </p>
 
-      <motion.p
-        className="text-[15px] mb-10 max-w-md"
-        style={{ color: "var(--fg-secondary)" }}
-        initial={{ opacity: 0, y: 16 }}
-        animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
-        transition={{ duration: DUR.normal, ease: EASE.out, delay: 0.35 }}
-      >
-        Have a project, idea, or opportunity?
-        I&apos;d love to hear about it.
-      </motion.p>
+          <a
+            href={`mailto:${data.email}`}
+            className="inline-flex items-center gap-3 text-[15px] font-semibold rounded-full px-7 py-3.5 transition-[filter,transform] hover:brightness-110 active:scale-[0.98]"
+            style={{ background: "var(--accent)", color: "var(--on-accent)" }}
+          >
+            Email me
+          </a>
+        </div>
 
-      <motion.a
-        href={`mailto:${data.email}`}
-        className="inline-flex items-center gap-3 text-[15px] font-semibold rounded-full px-7 py-3.5 transition-opacity hover:opacity-80 active:scale-[0.98]"
-        style={{ background: "var(--fg)", color: "var(--bg)" }}
-        initial={{ opacity: 0, y: 16 }}
-        animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
-        transition={{ duration: DUR.normal, ease: EASE.out, delay: 0.45 }}
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.97 }}
-      >
-        Get in touch
-        <motion.svg
-          width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"
-          initial={{ x: 0 }}
-          whileHover={{ x: 3 }}
-          transition={{ duration: 0.2 }}
-        >
-          <path d="M2 8h12M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-        </motion.svg>
-      </motion.a>
-
-      <motion.div
-        className="mt-12 pt-8"
-        style={{ borderTop: "1px solid var(--border)" }}
-        initial={{ opacity: 0 }}
-        animate={inView ? { opacity: 1 } : { opacity: 0 }}
-        transition={{ duration: DUR.normal, ease: EASE.out, delay: 0.6 }}
-      >
-        <p className="text-[13px]" style={{ color: "var(--fg-muted)" }}>
-          {data.email}
-        </p>
-      </motion.div>
+        <div>
+          <dl style={{ borderTop: "1px solid var(--border)" }}>
+            <Row label="Email">
+              <a href={`mailto:${data.email}`} className={linkClass}>{data.email}</a>
+            </Row>
+            {data.linkedin && (
+              <Row label="LinkedIn">
+                <a href={data.linkedin} target="_blank" rel="noopener noreferrer" className={linkClass}>
+                  {data.linkedin.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "")}
+                </a>
+              </Row>
+            )}
+            <Row label="Based in">{data.address.line3.replace(/\s*\d{4,6}/, "")}</Row>
+            <Row label="Languages">
+              <ul role="list" className="space-y-1">
+                {languages.items.map(lang => (
+                  <li key={lang.name}>
+                    {lang.name}{" "}
+                    <span className="text-[13px]" style={{ color: "var(--fg-muted)" }}>({lang.level.toLowerCase()})</span>
+                  </li>
+                ))}
+              </ul>
+            </Row>
+          </dl>
+        </div>
+      </div>
     </section>
   );
 }

@@ -10,7 +10,8 @@ interface EducationProps {
 
 function ArrowUpRight() {
   return (
-    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true" className="inline-block ml-0.5">
+    <svg width="14" height="14" viewBox="0 0 12 12" fill="none" aria-hidden="true"
+      className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
       <path d="M2 10L10 2M10 2H4.5M10 2V7.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
@@ -23,70 +24,60 @@ export default function Education({ education, certificates }: EducationProps) {
       className="py-24 px-6 max-w-6xl mx-auto"
       style={{ borderTop: "1px solid var(--border)" }}
     >
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-16">
         {/* Education */}
         <div>
-          <FadeIn>
-            <SectionHeading label={education.title} title="Education" />
-          </FadeIn>
+          <SectionHeading title="Education" />
           <div className="space-y-8">
             {education.items.map((item, i) => (
-              <FadeIn key={i} delay={i * 80}>
-                <div>
-                  <div className="flex items-start justify-between gap-4">
-                    <h3 className="text-[14px] font-semibold leading-snug" style={{ color: "var(--fg)" }}>
-                      {item.institution}
-                    </h3>
-                    <span className="label-xs shrink-0" style={{ color: "var(--fg-muted)" }}>
-                      {item.period}
-                    </span>
-                  </div>
-                  <p className="text-[13px] mt-1" style={{ color: "var(--fg-secondary)" }}>
-                    {item.degree}
-                  </p>
-                  <p className="text-[12px] mt-0.5" style={{ color: "var(--fg-muted)" }}>
-                    {item.major}
-                  </p>
-                </div>
+              <FadeIn key={i}>
+                <p className="label-xs" style={{ color: "var(--fg-muted)" }}>{item.period}</p>
+                <h3 className="text-[16px] font-semibold leading-snug mt-1" style={{ color: "var(--fg)" }}>
+                  {item.institution}
+                </h3>
+                <p className="text-[14px] mt-1" style={{ color: "var(--fg-secondary)" }}>
+                  {item.degree}, {item.major}
+                </p>
               </FadeIn>
             ))}
           </div>
         </div>
 
-        {/* Certificates */}
+        {/* Certificates: compact list; the description shows on wider screens only */}
         <div>
-          <FadeIn delay={60}>
-            <SectionHeading label={certificates.title} title="Certificates" />
-          </FadeIn>
-          <div className="space-y-8">
-            {certificates.items.map((item, i) => (
-              <FadeIn key={i} delay={60 + i * 80}>
-                <div>
-                  <div className="flex items-start justify-between gap-4">
-                    <h3 className="text-[14px] font-semibold leading-snug" style={{ color: "var(--fg)" }}>
+          <SectionHeading title="Certificates" description={certificates.description} />
+          <ul style={{ borderTop: "1px solid var(--border)" }} role="list">
+            {certificates.items.map((item, i) => {
+              const row = (
+                <div className="group flex items-start justify-between gap-6 py-4">
+                  <div className="min-w-0">
+                    <h3
+                      className="text-[15px] font-semibold leading-snug transition-colors group-hover:text-[var(--accent)]"
+                      style={{ color: "var(--fg)" }}
+                    >
                       {item.title}
                     </h3>
-                    <span className="label-xs shrink-0" style={{ color: "var(--fg-muted)" }}>
-                      {item.period}
-                    </span>
+                    <p className="hidden sm:block text-[13px] leading-relaxed mt-1 max-w-[36rem]" style={{ color: "var(--fg-secondary)" }}>
+                      {item.description}
+                    </p>
                   </div>
-                  <p className="text-[13px] leading-relaxed mt-2" style={{ color: "var(--fg-secondary)" }}>
-                    {item.description}
-                  </p>
-                  {item.link && (
-                    <ExternalLink
-                      href={item.link}
-                      ariaLabel={`View certificate: ${item.title}`}
-                      className="mt-2 inline-flex items-center text-[12px] font-medium transition-opacity hover:opacity-70"
-                      style={{ color: "var(--fg-muted)" }}
-                    >
-                      View certificate <ArrowUpRight />
-                    </ExternalLink>
-                  )}
+                  <span className="label-xs shrink-0 inline-flex items-center gap-2 pt-0.5" style={{ color: "var(--fg-muted)" }}>
+                    {item.period}
+                    {item.link && <span className="transition-colors group-hover:text-[var(--accent)]"><ArrowUpRight /></span>}
+                  </span>
                 </div>
-              </FadeIn>
-            ))}
-          </div>
+              );
+              return (
+                <li key={i} style={{ borderBottom: "1px solid var(--border)" }}>
+                  {item.link ? (
+                    <ExternalLink href={item.link} ariaLabel={`View certificate: ${item.title}`} className="block">
+                      {row}
+                    </ExternalLink>
+                  ) : row}
+                </li>
+              );
+            })}
+          </ul>
         </div>
       </div>
     </section>
