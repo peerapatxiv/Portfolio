@@ -11,6 +11,7 @@
     "email": "peerapat.xiv@gmail.com",
     "phone": "+66 (0) 09 174 5520",
     "linkedin": "https://www.linkedin.com/in/peerapatpadt/",
+    "github": "https://github.com/peerapatxiv",
     "profileTitle": "ABOUT",
     "bio": "Software engineer on the integration team at SCB TechX, building and supporting API services behind an API gateway. Before that I spent two years building web apps and interactive brand experiences. I care about clean, maintainable code and tools that make complex systems easier to work with."
   },
@@ -68,7 +69,8 @@
         "degree": "High School Diploma",
         "period": "2018 - 2021"
       }
-    ]
+    ],
+    "description": "Computer engineering at KMUTT, after a science and technology track in high school."
   },
   "skills": {
     "title": "SKILLS",
@@ -159,7 +161,8 @@
           "Developer tool",
           "Open source"
         ],
-        "featured": true
+        "featured": true,
+        "demo": "https://peerapatxiv.github.io/kong-manager/"
       },
       {
         "name": "Foremost Mini Game",
@@ -321,37 +324,43 @@
         "title": "AI Capabilities and Limitations",
         "period": "Oct 2026",
         "description": "Completed Anthropic's introductory course on how modern AI systems work, covering what large language models do well, where they fall short, and how to apply them responsibly in real-world work.",
-        "link": "https://verify.skilljar.com/c/6u79j3jhn7cu"
+        "link": "https://verify.skilljar.com/c/6u79j3jhn7cu",
+        "issuer": "Anthropic Academy"
       },
       {
         "title": "Claude 101",
         "period": "Oct 2026",
         "description": "Learned to use Claude for everyday work tasks, including its core features, effective prompting, and resources for more advanced use cases.",
-        "link": "https://verify.skilljar.com/c/9j84iigbx7me"
+        "link": "https://verify.skilljar.com/c/9j84iigbx7me",
+        "issuer": "Anthropic Academy"
       },
       {
         "title": "Introduction to Claude Cowork",
         "period": "Oct 2026",
         "description": "Completed hands-on training in working alongside Claude on real files and projects, covering the Cowork task loop, plugins and skills, file and research workflows, and steering multi-step work responsibly.",
-        "link": "https://verify.skilljar.com/c/4jfya5sfouk5"
+        "link": "https://verify.skilljar.com/c/4jfya5sfouk5",
+        "issuer": "Anthropic Academy"
       },
       {
         "title": "Claude Code in Action",
         "period": "Aug 2026",
         "description": "Completed hands-on training in AI-assisted software engineering using Claude Code, covering agentic workflows, multi-file editing, test-driven development, and integrating Claude into real-world engineering tasks.",
-        "link": "https://verify.skilljar.com/c/k2xhxppge6wc"
+        "link": "https://verify.skilljar.com/c/k2xhxppge6wc",
+        "issuer": "Anthropic Academy"
       },
       {
         "title": "Google UX Design Specialization",
         "period": "May - Aug 2022 · 4 months",
         "description": "Completed an intensive, hands-on specialization focused on core user experience design principles. Developed expertise in user research, wireframing, prototyping, and interaction design best practices through real-world projects and collaborative assignments.",
-        "link": "https://www.coursera.org/account/accomplishments/specialization/certificate/WCSPYVHZZQSY"
+        "link": "https://www.coursera.org/account/accomplishments/specialization/certificate/WCSPYVHZZQSY",
+        "issuer": "Google, via Coursera"
       },
       {
         "title": "Advanced React",
         "period": "Sep - Dec 2023",
         "description": "Progressed through the Meta Front-End Developer Professional Certificate, completing 6 out of 9 courses. Acquired advanced skills in building scalable and maintainable React applications, including state management, component architecture, performance optimization, and modern front-end development workflows.",
-        "link": "https://www.coursera.org/account/accomplishments/verify/23N62QT9AYRP"
+        "link": "https://www.coursera.org/account/accomplishments/verify/23N62QT9AYRP",
+        "issuer": "Meta, via Coursera"
       }
     ],
     "description": "Courses on AI tools and AI-assisted development, plus earlier work in UX design and React."

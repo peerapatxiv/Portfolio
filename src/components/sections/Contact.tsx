@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { motion, useInView } from "motion/react";
 import { About, Languages } from "@/types/portfolio";
 import { EASE, DUR } from "@/lib/motion";
@@ -26,6 +26,17 @@ const linkClass = "underline decoration-[var(--border-strong)] underline-offset-
 export default function Contact({ data, languages }: ContactProps) {
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, margin: "-10% 0px" });
+  const [copied, setCopied] = useState(false);
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(data.email);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      window.location.href = `mailto:${data.email}`;
+    }
+  };
 
   return (
     <section
@@ -57,6 +68,7 @@ export default function Contact({ data, languages }: ContactProps) {
             Have a project, idea or role in mind? I&apos;d love to hear about it.
           </p>
 
+          <div className="flex flex-wrap gap-3">
           <a
             href={`mailto:${data.email}`}
             className="inline-flex items-center gap-3 text-[15px] font-semibold rounded-full px-7 py-3.5 transition-[filter,transform] hover:brightness-110 active:scale-[0.98]"
@@ -64,6 +76,16 @@ export default function Contact({ data, languages }: ContactProps) {
           >
             Email me
           </a>
+          <button
+            type="button"
+            onClick={copyEmail}
+            className="inline-flex items-center gap-2 text-[15px] font-semibold rounded-full px-6 py-3.5 transition-colors hover:border-[var(--fg)]"
+            style={{ border: "1px solid var(--border-strong)", color: copied ? "var(--accent)" : "var(--fg)" }}
+            aria-live="polite"
+          >
+            {copied ? "Email copied" : "Copy email"}
+          </button>
+          </div>
         </div>
 
         <div>
@@ -75,6 +97,13 @@ export default function Contact({ data, languages }: ContactProps) {
               <Row label="LinkedIn">
                 <a href={data.linkedin} target="_blank" rel="noopener noreferrer" className={linkClass}>
                   {data.linkedin.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "")}
+                </a>
+              </Row>
+            )}
+            {data.github && (
+              <Row label="GitHub">
+                <a href={data.github} target="_blank" rel="noopener noreferrer" className={linkClass}>
+                  {data.github.replace(/^https?:\/\//, "")}
                 </a>
               </Row>
             )}

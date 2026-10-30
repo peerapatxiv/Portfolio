@@ -9,6 +9,7 @@ const NAV_LINKS = [
   { href: "work",       label: "Work" },
   { href: "experience", label: "Experience" },
   { href: "skills",     label: "Skills" },
+  { href: "education",  label: "Education" },
   { href: "contact",    label: "Contact" },
 ];
 
@@ -20,7 +21,11 @@ export default function Navbar() {
 
   // Compact navbar on scroll
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 48);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 48);
+      // Back in the hero: no section is active.
+      if (window.scrollY < window.innerHeight * 0.5) setActiveSection("");
+    };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -58,10 +63,10 @@ export default function Navbar() {
       <header
         className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
         style={{
-          background: scrolled ? "color-mix(in oklch, var(--bg) 88%, transparent)" : "transparent",
+          background: scrolled ? "var(--nav-bg)" : "transparent",
           borderBottom: scrolled ? "1px solid var(--border)" : "1px solid transparent",
-          backdropFilter: scrolled ? "blur(16px)" : "none",
-          WebkitBackdropFilter: scrolled ? "blur(16px)" : "none",
+          backdropFilter: scrolled ? "saturate(140%) blur(16px)" : "none",
+          WebkitBackdropFilter: scrolled ? "saturate(140%) blur(16px)" : "none",
         }}
       >
         <nav

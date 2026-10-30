@@ -2,14 +2,13 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
-import { About, ExperienceItem, ProjectItem } from "@/types/portfolio";
+import { About, EducationItem, ExperienceItem } from "@/types/portfolio";
 import { EASE, DUR } from "@/lib/motion";
 
 interface HeroProps {
   data: About;
   current: ExperienceItem;
-  latestProject?: ProjectItem;
-  certificateCount: number;
+  degree?: EducationItem;
 }
 
 function ArrowDown() {
@@ -35,7 +34,7 @@ function splitPosition(position: string) {
  * The hero's signature: a profile rendered as an API response,
  * a nod to the day job (API gateway integration).
  */
-function ProfileResponse({ data, current, latestProject, certificateCount }: HeroProps) {
+function ProfileResponse({ data, current, degree }: HeroProps) {
   const { title, team } = splitPosition(current.position);
   const rows: [string, string][] = [
     ["role", title],
@@ -43,8 +42,7 @@ function ProfileResponse({ data, current, latestProject, certificateCount }: Her
     ["company", current.company],
     ["since", current.period.replace(/\s*-\s*Present/i, "")],
     ["based", cityOf(data)],
-    ...(latestProject ? [["latest_project", latestProject.name] as [string, string]] : []),
-    ["certificates", String(certificateCount)],
+    ...(degree ? [["degree", degree.major] as [string, string]] : []),
   ];
 
   return (
@@ -107,7 +105,7 @@ export default function Hero(props: HeroProps) {
     <section
       ref={heroRef}
       id="hero"
-      className="relative min-h-[100svh] flex items-end px-6 pt-32 pb-16 md:pb-24 max-w-6xl mx-auto"
+      className="relative min-h-[92svh] flex items-center px-6 pt-32 pb-16 max-w-6xl mx-auto"
       aria-label="Introduction"
     >
       <motion.div
@@ -153,6 +151,25 @@ export default function Hero(props: HeroProps) {
               Email me
             </a>
           </motion.div>
+
+          <motion.ul className="flex flex-wrap items-center gap-5 mt-8 text-[14px]" role="list" {...enter(0.36)}>
+            {[
+              { label: "GitHub", href: data.github },
+              { label: "LinkedIn", href: data.linkedin },
+            ].filter(l => l.href).map(l => (
+              <li key={l.label}>
+                <a
+                  href={l.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium underline decoration-[var(--border-strong)] underline-offset-4 transition-colors hover:text-[var(--accent)] hover:decoration-[var(--accent)]"
+                  style={{ color: "var(--fg-secondary)" }}
+                >
+                  {l.label}
+                </a>
+              </li>
+            ))}
+          </motion.ul>
         </div>
 
         <motion.div {...enter(0.45)}>

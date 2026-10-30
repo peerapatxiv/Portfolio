@@ -21,8 +21,7 @@ export default function Home() {
         <Hero
           data={portfolio.about}
           current={portfolio.experience.items[0]}
-          latestProject={portfolio.projects.items[0]}
-          certificateCount={portfolio.certificates.items.length}
+          degree={portfolio.education.items[0]}
         />
         <Work data={portfolio.projects} />
         <Experience data={portfolio.experience} />

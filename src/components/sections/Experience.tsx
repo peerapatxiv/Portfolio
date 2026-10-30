@@ -119,10 +119,11 @@ export default function Experience({ data }: ExperienceProps) {
       className="py-24 px-6 max-w-6xl mx-auto"
       style={{ borderTop: "1px solid var(--border)" }}
     >
-      <SectionHeading
-        title="Experience"
-        description={data.description}
-      />
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.6fr] gap-x-16">
+        {/* Heading stays in view while the timeline scrolls past on wide screens */}
+        <div className="lg:sticky lg:top-28 lg:self-start">
+          <SectionHeading title="Experience" description={data.description} />
+        </div>
 
       <div className="max-w-2xl" ref={sectionRef}>
         {/* Animated timeline line overlay */}
@@ -149,6 +150,7 @@ export default function Experience({ data }: ExperienceProps) {
             />
           ))}
         </div>
+      </div>
       </div>
     </section>
   );

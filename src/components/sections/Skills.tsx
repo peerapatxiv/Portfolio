@@ -1,3 +1,5 @@
+"use client";
+
 import { Skills as SkillsType } from "@/types/portfolio";
 import SectionHeading from "@/components/ui/SectionHeading";
 import FadeIn from "@/components/ui/FadeIn";
@@ -27,7 +29,7 @@ export default function Skills({ data }: SkillsProps) {
           <FadeIn className="md:col-span-2 lg:col-span-1 lg:row-span-2">
             <div
               className="h-full rounded-2xl p-6"
-              style={{ background: "var(--accent-soft)", border: "1px solid color-mix(in oklch, var(--accent) 25%, transparent)" }}
+              style={{ background: "var(--accent-soft)", border: "1px solid color-mix(in srgb, var(--accent) 25%, transparent)" }}
             >
               <p className="label-xs inline-flex items-center gap-2" style={{ color: "var(--accent)" }}>
                 <span className="h-1.5 w-1.5 rounded-full" style={{ background: "var(--accent)" }} aria-hidden="true" />
@@ -46,7 +48,7 @@ export default function Skills({ data }: SkillsProps) {
                   <li
                     key={skill}
                     className="text-[15px] font-medium py-2.5"
-                    style={{ color: "var(--fg)", borderTop: "1px solid color-mix(in oklch, var(--accent) 18%, transparent)" }}
+                    style={{ color: "var(--fg)", borderTop: "1px solid color-mix(in srgb, var(--accent) 18%, transparent)" }}
                   >
                     {skill}
                   </li>

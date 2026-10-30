@@ -12,6 +12,7 @@ export interface About {
   email: string;
   phone: string;
   linkedin?: string;
+  github?: string;
   profileTitle: string;
   bio: string;
 }
@@ -56,6 +57,7 @@ export interface EducationItem {
 
 export interface Education {
   title: string;
+  description?: string;
   items: EducationItem[];
 }
 
@@ -78,6 +80,7 @@ export interface ProjectItem {
   link: string;
   tags?: string[];
   featured?: boolean;
+  demo?: string;
 }
 
 export interface Projects {
@@ -88,6 +91,7 @@ export interface Projects {
 
 export interface CertificateItem {
   title: string;
+  issuer?: string;
   period: string;
   description: string;
   link: string;
