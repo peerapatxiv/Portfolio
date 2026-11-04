@@ -6,9 +6,9 @@ import Logo from "@/components/ui/Logo";
 import data from "@/data/data.json";
 
 const NAV_LINKS = [
-  { href: "work",       label: "Work" },
   { href: "experience", label: "Experience" },
   { href: "skills",     label: "Skills" },
+  { href: "work",       label: "Work" },
   { href: "education",  label: "Education" },
   { href: "contact",    label: "Contact" },
 ];

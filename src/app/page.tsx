@@ -23,9 +23,9 @@ export default function Home() {
           current={portfolio.experience.items[0]}
           degree={portfolio.education.items[0]}
         />
-        <Work data={portfolio.projects} />
         <Experience data={portfolio.experience} />
         <Skills data={portfolio.skills} />
+        <Work data={portfolio.projects} />
         <Education education={portfolio.education} certificates={portfolio.certificates} />
         <Contact data={portfolio.about} languages={portfolio.languages} />
       </main>
