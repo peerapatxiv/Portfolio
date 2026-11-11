@@ -1,12 +1,16 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
 import { Projects as ProjectsType, ProjectItem } from "@/types/portfolio";
 import FadeIn from "@/components/ui/FadeIn";
 import SectionHeading from "@/components/ui/SectionHeading";
 import ProjectCard from "@/components/projects/ProjectCard";
 import ExternalLink from "@/components/ui/ExternalLink";
 import Tag from "@/components/ui/Tag";
+import GlowCard from "@/components/ui/GlowCard";
+import ArrowBadge from "@/components/ui/ArrowBadge";
+import { EASE } from "@/lib/motion";
 
 interface WorkProps {
   data: ProjectsType;
@@ -89,9 +93,7 @@ function FeaturedCard({ item }: { item: ProjectItem }) {
       <div className="flex items-start justify-between gap-4">
         <p className="label-xs" style={{ color: "var(--fg-muted)" }}>{item.period}</p>
         {item.link && (
-          <span className="transition-colors group-hover:text-[var(--accent)]" style={{ color: "var(--fg-muted)" }}>
-            <ArrowUpRight />
-          </span>
+          <ArrowBadge />
         )}
       </div>
       <h3
@@ -142,7 +144,9 @@ export default function Work({ data }: WorkProps) {
 
       {spotlight && (
         <FadeIn>
-          <Spotlight item={spotlight} />
+          <GlowCard className="rounded-3xl" tilt={2}>
+            <Spotlight item={spotlight} />
+          </GlowCard>
         </FadeIn>
       )}
 
@@ -152,9 +156,12 @@ export default function Work({ data }: WorkProps) {
             // An odd last card spans the full row so the grid has no gap.
             <FadeIn
               key={item.name}
+              delay={(i % 2) * 120}
               className={`h-full ${i === others.length - 1 && others.length % 2 === 1 ? "md:col-span-2" : ""}`}
             >
-              <FeaturedCard item={item} />
+              <GlowCard className="h-full rounded-2xl" tilt={4}>
+                <FeaturedCard item={item} />
+              </GlowCard>
             </FadeIn>
           ))}
         </div>
@@ -175,25 +182,47 @@ export default function Work({ data }: WorkProps) {
                     type="button"
                     onClick={() => setFilter(f)}
                     aria-pressed={active}
-                    className="text-[13px] font-medium rounded-full px-3.5 py-1.5 transition-colors"
-                    style={
-                      active
-                        ? { background: "var(--fg)", color: "var(--bg)", border: "1px solid var(--fg)" }
-                        : { color: "var(--fg-secondary)", border: "1px solid var(--border-strong)" }
-                    }
+                    className="relative text-[13px] font-medium rounded-full px-3.5 py-1.5 transition-colors duration-300"
+                    style={{
+                      color: active ? "var(--bg)" : "var(--fg-secondary)",
+                      border: `1px solid ${active ? "var(--fg)" : "var(--border-strong)"}`,
+                    }}
                   >
-                    {f}
+                    {active && (
+                      <motion.span
+                        layoutId="work-filter-pill"
+                        className="absolute inset-[-1px] rounded-full"
+                        style={{ background: "var(--fg)" }}
+                        transition={{ type: "spring", stiffness: 420, damping: 34 }}
+                        aria-hidden="true"
+                      />
+                    )}
+                    <span className="relative">{f}</span>
                   </button>
                 );
               })}
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-            {shown.map(item => (
-              <ProjectCard key={item.name} item={item} />
-            ))}
-          </div>
+          <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            <AnimatePresence mode="popLayout" initial={false}>
+              {shown.map((item, i) => (
+                <motion.div
+                  key={item.name}
+                  layout
+                  initial={{ opacity: 0, scale: 0.9, y: 16, filter: "blur(6px)" }}
+                  animate={{ opacity: 1, scale: 1, y: 0, filter: "blur(0px)" }}
+                  exit={{ opacity: 0, scale: 0.9, filter: "blur(6px)", transition: { duration: 0.2 } }}
+                  transition={{ duration: 0.5, ease: EASE.out, delay: Math.min(i, 8) * 0.04 }}
+                  className="h-full"
+                >
+                  <GlowCard className="h-full rounded-xl" tilt={5}>
+                    <ProjectCard item={item} />
+                  </GlowCard>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </motion.div>
           <p className="sr-only" aria-live="polite">{shown.length} projects shown</p>
         </div>
       )}

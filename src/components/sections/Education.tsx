@@ -3,6 +3,7 @@
 import { Education as EducationType, Certificates as CertificatesType, CertificateItem } from "@/types/portfolio";
 import SectionHeading from "@/components/ui/SectionHeading";
 import FadeIn from "@/components/ui/FadeIn";
+import GlowCard from "@/components/ui/GlowCard";
 import ExternalLink from "@/components/ui/ExternalLink";
 
 interface EducationProps {
@@ -89,7 +90,8 @@ export default function Education({ education, certificates }: EducationProps) {
             {education.items.map((item, i) => {
               const primary = i === 0;
               return (
-                <FadeIn key={item.institution}>
+                <FadeIn key={item.institution} delay={i * 120}>
+                  <GlowCard className="rounded-2xl" tilt={3}>
                   <article
                     className="rounded-2xl p-6"
                     style={
@@ -126,6 +128,7 @@ export default function Education({ education, certificates }: EducationProps) {
                       {item.major}
                     </p>
                   </article>
+                  </GlowCard>
                 </FadeIn>
               );
             })}
@@ -136,8 +139,8 @@ export default function Education({ education, certificates }: EducationProps) {
         <div>
           <SectionHeading title="Certificates" description={certificates.description} />
           <div className="space-y-10">
-            {groups.map(([issuer, items]) => (
-              <FadeIn key={issuer}>
+            {groups.map(([issuer, items], gi) => (
+              <FadeIn key={issuer} delay={gi * 100}>
                 <div className="flex items-baseline justify-between gap-4 mb-1">
                   <h3 className="text-[15px] font-bold tracking-tight" style={{ color: "var(--fg)" }}>
                     {issuer}

@@ -1,19 +1,9 @@
 import { ProjectItem } from "@/types/portfolio";
 import ExternalLink from "@/components/ui/ExternalLink";
+import ArrowBadge from "@/components/ui/ArrowBadge";
 
 interface ProjectCardProps {
   item: ProjectItem;
-}
-
-function ArrowUpRight() {
-  return (
-    <svg
-      width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"
-      className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-    >
-      <path d="M2.5 10.5L10.5 2.5M10.5 2.5H5M10.5 2.5V8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
 }
 
 export default function ProjectCard({ item }: ProjectCardProps) {
@@ -30,9 +20,7 @@ export default function ProjectCard({ item }: ProjectCardProps) {
           {item.name}
         </h4>
         {item.link && (
-          <span className="shrink-0 mt-1 transition-colors group-hover:text-[var(--accent)]" style={{ color: "var(--fg-muted)" }}>
-            <ArrowUpRight />
-          </span>
+          <ArrowBadge />
         )}
       </div>
       <p className="label-xs mt-1" style={{ color: "var(--fg-muted)" }}>

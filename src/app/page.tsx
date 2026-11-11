@@ -3,6 +3,8 @@ import { PortfolioData } from "@/types/portfolio";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import ScrollProgress from "@/components/ui/ScrollProgress";
+import Background from "@/components/ui/Background";
+import HeadingLens from "@/components/ui/HeadingLens";
 import Hero from "@/components/sections/Hero";
 import Work from "@/components/sections/Work";
 import Experience from "@/components/sections/Experience";
@@ -15,6 +17,8 @@ const portfolio = data as PortfolioData;
 export default function Home() {
   return (
     <>
+      <Background />
+      <HeadingLens />
       <ScrollProgress />
       <Navbar />
       <main>
