@@ -1,9 +1,10 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import { About, EducationItem, ExperienceItem } from "@/types/portfolio";
 import { EASE, DUR } from "@/lib/motion";
+import Magnetic from "@/components/ui/Magnetic";
 
 interface HeroProps {
   data: About;
@@ -34,7 +35,17 @@ function splitPosition(position: string) {
  * The hero's signature: a profile rendered as an API response,
  * a nod to the day job (API gateway integration).
  */
+const PANEL_DELAY = 0.45;
+const ROWS_DELAY = PANEL_DELAY + 0.75;
+
 function ProfileResponse({ data, current, degree }: HeroProps) {
+  // The request "resolves" a moment after the panel lands, then the body streams in.
+  const [loaded, setLoaded] = useState(false);
+  useEffect(() => {
+    const t = setTimeout(() => setLoaded(true), (ROWS_DELAY - 0.1) * 1000);
+    return () => clearTimeout(t);
+  }, []);
+
   const { title, team } = splitPosition(current.position);
   const rows: [string, string][] = [
     ["role", title],
@@ -47,7 +58,7 @@ function ProfileResponse({ data, current, degree }: HeroProps) {
 
   return (
     <div
-      className="rounded-2xl overflow-hidden text-[13px] leading-[1.75] font-mono"
+      className="rounded-2xl overflow-hidden text-[13px] leading-[1.75] font-mono backdrop-blur-xl"
       style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
     >
       <div
@@ -62,13 +73,26 @@ function ProfileResponse({ data, current, degree }: HeroProps) {
             <span className="absolute inline-flex h-full w-full rounded-full opacity-60 motion-safe:animate-ping" style={{ background: "var(--accent)" }} />
             <span className="relative inline-flex h-2 w-2 rounded-full" style={{ background: "var(--accent)" }} />
           </span>
-          200 OK
+          <motion.span
+            key={loaded ? "ok" : "pending"}
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, ease: EASE.out }}
+          >
+            {loaded ? "200 OK" : "pending…"}
+          </motion.span>
         </span>
       </div>
       <dl className="px-5 py-4">
         <span style={{ color: "var(--fg-muted)" }}>{"{"}</span>
         {rows.map(([key, value], i) => (
-          <div key={key} className="flex gap-2 pl-4 min-w-0">
+          <motion.div
+            key={key}
+            className="flex gap-2 pl-4 min-w-0"
+            initial={{ opacity: 0, x: -10, filter: "blur(4px)" }}
+            animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+            transition={{ duration: 0.45, ease: EASE.out, delay: ROWS_DELAY + i * 0.09 }}
+          >
             <dt className="shrink-0" style={{ color: "var(--fg-muted)" }}>&quot;{key}&quot;:</dt>
             <dd className="min-w-0 break-words" style={{ color: "var(--fg)" }}>
               {/^\d+$/.test(value) ? (
@@ -78,9 +102,10 @@ function ProfileResponse({ data, current, degree }: HeroProps) {
               )}
               {i < rows.length - 1 && <span style={{ color: "var(--fg-muted)" }}>,</span>}
             </dd>
-          </div>
+          </motion.div>
         ))}
         <span style={{ color: "var(--fg-muted)" }}>{"}"}</span>
+        <span className="caret inline-block w-[7px] h-[14px] ml-1 align-[-2px]" style={{ background: "var(--accent)" }} aria-hidden="true" />
       </dl>
     </div>
   );
@@ -93,6 +118,19 @@ export default function Hero(props: HeroProps) {
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const fadeOut = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const liftUp = useTransform(scrollYProgress, [0, 0.5], [0, -40]);
+
+  const letters = (word: string, offset: number) =>
+    [...word].map((ch, i) => (
+      <motion.span
+        key={i}
+        className="inline-block"
+        initial={{ y: "110%", rotate: 8, opacity: 0 }}
+        animate={{ y: "0%", rotate: 0, opacity: 1 }}
+        transition={{ duration: 0.9, ease: EASE.out, delay: 0.1 + (offset + i) * 0.035 }}
+      >
+        {ch}
+      </motion.span>
+    ));
 
   // One orchestrated entrance: name, then supporting copy, then the response panel.
   const enter = (delay: number) => ({
@@ -108,6 +146,7 @@ export default function Hero(props: HeroProps) {
       className="relative min-h-[92svh] flex items-center px-6 pt-32 pb-16 max-w-6xl mx-auto"
       aria-label="Introduction"
     >
+
       <motion.div
         className="grid w-full grid-cols-1 lg:grid-cols-[1.25fr_1fr] gap-12 lg:gap-16 items-end"
         style={{ opacity: fadeOut, y: liftUp }}
@@ -118,14 +157,17 @@ export default function Hero(props: HeroProps) {
             style={{ color: "var(--fg-secondary)" }}
             {...enter(0)}
           >
-            {data.role} in {cityOf(data).split(",")[0]}
+            <span className="text-shimmer">{data.role} in {cityOf(data).split(",")[0]}</span>
           </motion.p>
 
-          <motion.h1 className="display-xl" style={{ color: "var(--fg)" }} {...enter(0.08)}>
-            {data.firstname}
-            <br />
-            {data.lastname}
-          </motion.h1>
+          <h1 className="display-xl" style={{ color: "var(--fg)" }} aria-label={`${data.firstname} ${data.lastname}`}>
+            <span aria-hidden="true" className="block overflow-hidden whitespace-nowrap pb-[0.1em] -mb-[0.1em]">
+              {letters(data.firstname, 0)}
+            </span>
+            <span aria-hidden="true" className="block overflow-hidden whitespace-nowrap pb-[0.1em] -mb-[0.1em]">
+              {letters(data.lastname, data.firstname.length)}
+            </span>
+          </h1>
 
           <motion.p
             className="text-[16px] leading-relaxed mt-8 max-w-[34rem]"
@@ -136,6 +178,7 @@ export default function Hero(props: HeroProps) {
           </motion.p>
 
           <motion.div className="flex flex-wrap items-center gap-3 mt-10" {...enter(0.3)}>
+            <Magnetic>
             <a
               href="#work"
               className="inline-flex items-center gap-2 text-[14px] font-semibold rounded-full px-5 py-3 transition-[filter,transform] duration-150 hover:brightness-110 active:scale-[0.98]"
@@ -143,6 +186,8 @@ export default function Hero(props: HeroProps) {
             >
               See my work <ArrowDown />
             </a>
+            </Magnetic>
+            <Magnetic>
             <a
               href={`mailto:${data.email}`}
               className="inline-flex items-center gap-2 text-[14px] font-semibold rounded-full px-5 py-3 transition-colors duration-150 hover:border-[var(--fg)] active:scale-[0.98]"
@@ -150,6 +195,7 @@ export default function Hero(props: HeroProps) {
             >
               Email me
             </a>
+            </Magnetic>
           </motion.div>
 
           <motion.ul className="flex flex-wrap items-center gap-5 mt-8 text-[14px]" role="list" {...enter(0.36)}>
@@ -172,7 +218,12 @@ export default function Hero(props: HeroProps) {
           </motion.ul>
         </div>
 
-        <motion.div {...enter(0.45)}>
+        <motion.div
+          initial={{ opacity: 0, y: 40, rotateX: 18, scale: 0.94 }}
+          animate={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
+          transition={{ duration: DUR.entrance, ease: EASE.out, delay: PANEL_DELAY }}
+          style={{ transformPerspective: 1200 }}
+        >
           <ProfileResponse {...props} />
         </motion.div>
       </motion.div>

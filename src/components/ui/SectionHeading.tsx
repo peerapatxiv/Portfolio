@@ -1,4 +1,5 @@
 import FadeIn from "@/components/ui/FadeIn";
+import RevealText from "@/components/ui/RevealText";
 
 interface SectionHeadingProps {
   title: string;
@@ -8,15 +9,15 @@ interface SectionHeadingProps {
 
 export default function SectionHeading({ title, description, className = "" }: SectionHeadingProps) {
   return (
-    <FadeIn className={`mb-12 max-w-2xl ${className}`}>
-      <h2 className="section-title" style={{ color: "var(--fg)" }}>
-        {title}
-      </h2>
+    <div className={`mb-12 max-w-2xl ${className}`}>
+      <RevealText text={title} className="section-title" style={{ color: "var(--fg)" }} />
       {description && (
-        <p className="text-[15px] leading-relaxed mt-3" style={{ color: "var(--fg-secondary)" }}>
-          {description}
-        </p>
+        <FadeIn delay={150}>
+          <p className="text-[15px] leading-relaxed mt-3" style={{ color: "var(--fg-secondary)" }}>
+            {description}
+          </p>
+        </FadeIn>
       )}
-    </FadeIn>
+    </div>
   );
 }

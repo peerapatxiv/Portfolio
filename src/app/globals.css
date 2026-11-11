@@ -2,24 +2,34 @@
 
 /* ─── Design tokens ──────────────────────────────────────────── */
 :root {
-  --bg: #F6F6F3;
-  --bg-subtle: #EDEDE8;
-  --bg-card: #FFFFFF;
+  --bg: #E6E8F0;
+  --bg-subtle: #DCDFEA;
+  --bg-card: rgba(255, 255, 255, 0.72);
   --fg: #16171B;
   --fg-secondary: #55575E;
   --fg-muted: #7C7E85;
-  --border: #E2E2DC;
-  --border-strong: #C6C6C0;
+  --border: #D3D6E2;
+  --border-strong: #B5B9C8;
   /* Cobalt: the one signature color. Used for live/current state, links and focus. */
   --accent: #2B47D9;
   --accent-soft: #E6E9FB;
   --on-accent: #FFFFFF;
   /* Navbar glass: page color at 80% so blurred content shows through without a tint */
-  --nav-bg: rgba(246, 246, 243, 0.8);
+  --nav-bg: rgba(230, 232, 240, 0.72);
   /* Background texture: dot grid + soft accent glow behind the hero */
   --bg-dot: rgba(22, 23, 27, 0.11);
   --bg-glow: rgba(43, 71, 217, 0.13);
   --bg-glow-2: rgba(43, 71, 217, 0.07);
+  /* Background mesh colors: cobalt, violet, sky */
+  --mesh-1: rgba(30, 52, 190, 0.34);
+  --mesh-2: rgba(109, 40, 217, 0.28);
+  --mesh-3: rgba(2, 132, 199, 0.24);
+  --mesh-4: rgba(190, 24, 93, 0.14);
+  --grain-opacity: 0.05;
+  /* Active nav pill: deep cobalt to violet with white text */
+  --pill-from: #2B47D9;
+  --pill-to: #6D3BE8;
+  --on-pill: #FFFFFF;
 
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
@@ -43,21 +53,28 @@
 /* ─── Dark mode ──────────────────────────────────────────────── */
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #121317;
-    --bg-subtle: #1A1C21;
-    --bg-card: #1D1F25;
+    --bg: #040406;
+    --bg-subtle: #121319;
+    --bg-card: rgba(14, 15, 21, 0.7);
     --fg: #F1F1EE;
     --fg-secondary: #ABADB4;
     --fg-muted: #80838B;
-    --border: #2A2C32;
-    --border-strong: #3B3E45;
+    --border: #1D1F27;
+    --border-strong: #2E313C;
     --accent: #8D9CFF;
     --accent-soft: #1F2442;
     --on-accent: #10132A;
-    --nav-bg: rgba(18, 19, 23, 0.78);
-    --bg-dot: rgba(241, 241, 238, 0.075);
+    --nav-bg: rgba(4, 4, 6, 0.72);
+    --bg-dot: rgba(241, 241, 238, 0.05);
     --bg-glow: rgba(141, 156, 255, 0.16);
     --bg-glow-2: rgba(141, 156, 255, 0.08);
+    --mesh-1: rgba(37, 56, 200, 0.13);
+    --mesh-2: rgba(91, 33, 182, 0.11);
+    --mesh-3: rgba(3, 105, 161, 0.08);
+    --mesh-4: rgba(157, 23, 77, 0.05);
+    --grain-opacity: 0.07;
+    --pill-from: #4C5FF5;
+    --pill-to: #7C4DEB;
   }
 }
 
@@ -83,13 +100,53 @@ body {
   isolation: isolate;
 }
 
-/* Dot grid, fixed to the viewport and fading toward the bottom of the screen */
-body::before {
-  content: "";
+/* ─── Page backdrop (see components/ui/Background.tsx) ───────── */
+.page-bg {
   position: fixed;
   inset: 0;
   z-index: -1;
   pointer-events: none;
+  overflow: hidden;
+}
+
+.mesh {
+  position: absolute;
+  inset: -10%;
+  filter: blur(80px) saturate(1.2);
+}
+
+.mesh-blob {
+  position: absolute;
+  border-radius: 9999px;
+  will-change: transform;
+}
+
+.mesh-1 { width: 55vmax; height: 55vmax; left: 45%; top: -20%; background: var(--mesh-1); animation: mesh-1 28s var(--ease-in-out) infinite; }
+.mesh-2 { width: 45vmax; height: 45vmax; left: -10%; top: 10%;  background: var(--mesh-2); animation: mesh-2 34s var(--ease-in-out) infinite; }
+.mesh-3 { width: 40vmax; height: 40vmax; left: 30%;  top: 55%;  background: var(--mesh-3); animation: mesh-3 30s var(--ease-in-out) infinite; }
+.mesh-4 { width: 30vmax; height: 30vmax; left: 70%;  top: 60%;  background: var(--mesh-4); animation: mesh-4 38s var(--ease-in-out) infinite; }
+
+@keyframes mesh-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%      { transform: translate(-25%, 20%) scale(1.15); }
+}
+@keyframes mesh-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%      { transform: translate(30%, -15%) scale(0.9); }
+}
+@keyframes mesh-3 {
+  0%, 100% { transform: translate(0, 0) scale(1.1); }
+  50%      { transform: translate(-20%, -25%) scale(0.95); }
+}
+@keyframes mesh-4 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%      { transform: translate(-40%, -10%) scale(1.25); }
+}
+
+/* Dot grid, fading toward the bottom of the screen */
+.dots {
+  position: absolute;
+  inset: 0;
   background-image: radial-gradient(circle, var(--bg-dot) 1px, transparent 1.4px);
   background-size: 24px 24px;
   background-position: center top;
@@ -97,19 +154,18 @@ body::before {
   mask-image: radial-gradient(ellipse 110% 75% at 50% 0%, #000 25%, transparent 80%);
 }
 
-/* Soft accent glow at the top of the page; scrolls away with the hero */
-body::after {
-  content: "";
+/* Fine film grain so the gradients don't band */
+.grain {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1100px;
-  z-index: -1;
-  pointer-events: none;
-  background:
-    radial-gradient(45% 55% at 80% 30%, var(--bg-glow), transparent 70%),
-    radial-gradient(35% 40% at 5% 0%, var(--bg-glow-2), transparent 70%);
+  inset: 0;
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* The heading lens (components/ui/HeadingLens.tsx) replaces the cursor over big headings */
+html.heading-lens :is(h1, h2, .display-xl, .section-title),
+html.heading-lens :is(h1, h2, .display-xl, .section-title) * {
+  cursor: none;
 }
 
 ::selection {
@@ -131,7 +187,7 @@ body::after {
 
 /* ─── Typography scale ───────────────────────────────────────── */
 .display-xl {
-  font-size: clamp(3rem, 8vw, 7rem);
+  font-size: clamp(2.5rem, 8vw, 6rem);
   font-weight: 700;
   line-height: 0.95;
   letter-spacing: -0.04em;
@@ -179,6 +235,92 @@ body::after {
   to   { transform: translateX(-50%); }
 }
 
+@keyframes caret-blink {
+  0%, 49%   { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+@keyframes shimmer {
+  from { background-position: 200% 0; }
+  to   { background-position: -200% 0; }
+}
+
+.caret    { animation: caret-blink 1s steps(1) infinite; }
+
+/* Accent sheen that sweeps across text */
+.text-shimmer {
+  background: linear-gradient(110deg, var(--fg-secondary) 40%, var(--accent) 50%, var(--fg-secondary) 60%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 6s linear infinite;
+}
+
+/* Masks a full-size layer down to a 1px border so only the edge lights up */
+.glow-ring {
+  padding: 1px;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+/* Idle card glow: blurred light drifting slowly inside each card */
+@keyframes drift-a {
+  0%, 100% { transform: translate(-20%, -25%) scale(1); }
+  25%      { transform: translate(70%, -10%) scale(1.15); }
+  50%      { transform: translate(90%, 55%) scale(0.9); }
+  75%      { transform: translate(10%, 70%) scale(1.1); }
+}
+
+@keyframes drift-b {
+  0%, 100% { transform: translate(110%, 80%) scale(0.9); }
+  33%      { transform: translate(20%, 40%) scale(1.15); }
+  66%      { transform: translate(80%, -20%) scale(1); }
+}
+
+.card-drift {
+  transition: opacity 0.4s var(--ease-out);
+}
+
+.card-drift-a,
+.card-drift-b {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 9999px;
+  filter: blur(48px);
+  will-change: transform;
+}
+
+.card-drift-a {
+  width: 60%;
+  aspect-ratio: 1;
+  background: color-mix(in srgb, var(--accent) 16%, transparent);
+  animation: drift-a 20s var(--ease-in-out) infinite;
+}
+
+.card-drift-b {
+  width: 45%;
+  aspect-ratio: 1;
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  animation: drift-b 26s var(--ease-in-out) infinite;
+}
+
+/* Cards rise on hover with a soft accent glow underneath (lift itself is in GlowCard) */
+.card-lift {
+  box-shadow: 0 0 0 0 transparent;
+  transition: box-shadow 0.4s var(--ease-out);
+}
+.card-lift:hover {
+  box-shadow:
+    0 24px 48px -24px color-mix(in srgb, var(--accent) 45%, transparent),
+    0 8px 16px -8px rgba(0, 0, 0, 0.25);
+}
+
+/* Dim the drifting light on hover so the cursor glow takes over */
+.group\/glow:hover > .card-drift { opacity: 0.35; }
+
 .animate-fade-up    { animation: fade-up   0.6s var(--ease-out) both; }
 .animate-fade-in    { animation: fade-in   0.5s var(--ease-out) both; }
 .animate-slide-down { animation: slide-down 0.3s var(--ease-out) both; }
@@ -201,4 +343,6 @@ section[id] {
     transition-duration: 0.01ms !important;
   }
   html { scroll-behavior: auto; }
+  .card-drift { display: none; }
+  .mesh-blob { animation: none !important; }
 }
