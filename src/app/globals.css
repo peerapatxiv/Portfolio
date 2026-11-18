@@ -53,7 +53,7 @@
 /* ─── Dark mode ──────────────────────────────────────────────── */
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #040406;
+    --bg: #0A0A0C;
     --bg-subtle: #121319;
     --bg-card: rgba(14, 15, 21, 0.7);
     --fg: #F1F1EE;
@@ -64,15 +64,15 @@
     --accent: #8D9CFF;
     --accent-soft: #1F2442;
     --on-accent: #10132A;
-    --nav-bg: rgba(4, 4, 6, 0.72);
+    --nav-bg: rgba(10, 10, 12, 0.72);
     --bg-dot: rgba(241, 241, 238, 0.05);
     --bg-glow: rgba(141, 156, 255, 0.16);
     --bg-glow-2: rgba(141, 156, 255, 0.08);
-    --mesh-1: rgba(37, 56, 200, 0.13);
-    --mesh-2: rgba(91, 33, 182, 0.11);
-    --mesh-3: rgba(3, 105, 161, 0.08);
-    --mesh-4: rgba(157, 23, 77, 0.05);
-    --grain-opacity: 0.07;
+    --mesh-1: rgba(37, 56, 200, 0.05);
+    --mesh-2: rgba(91, 33, 182, 0.035);
+    --mesh-3: rgba(3, 105, 161, 0.025);
+    --mesh-4: rgba(157, 23, 77, 0);
+    --grain-opacity: 0.05;
     --pill-from: #4C5FF5;
     --pill-to: #7C4DEB;
   }
@@ -160,6 +160,12 @@ body {
   inset: 0;
   opacity: var(--grain-opacity);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* In dark mode, plain grain is grey noise that lifts the near-black page to
+   charcoal. Overlay keeps the texture without brightening the base. */
+@media (prefers-color-scheme: dark) {
+  .grain { mix-blend-mode: overlay; }
 }
 
 /* The heading lens (components/ui/HeadingLens.tsx) replaces the cursor over big headings */
