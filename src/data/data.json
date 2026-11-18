@@ -165,6 +165,17 @@
         "demo": "https://caserviceexplorer.vercel.app"
       },
       {
+        "name": "Task Tracker",
+        "period": "Oct - Nov 2026",
+        "description": "Built a Notion-style work tracker for API gateway releases, bringing releases, projects, tasks, deadlines and Jira links into one place. Every view (dashboard, calendar, status board and release pages) reads the same task data, with drag-and-drop planning, shared notes, a two-person workspace on Supabase and a helper that turns a Jira ticket into Kong route YAML. Also runs fully in the browser, with SQLite compiled to WebAssembly.",
+        "link": "https://github.com/peerapatxiv/CATracker",
+        "tags": [
+          "Developer tool",
+          "Productivity"
+        ],
+        "featured": true
+      },
+      {
         "name": "Kong Manager",
         "period": "Sep - Oct 2026",
         "description": "Built a browser-based tool for viewing and editing Kong Gateway configuration. Supports editing declarative config files locally, managing services, routes, consumers, credentials and plugins live through the Kong Admin API, and comparing two configs to see what was added, removed or changed.",
