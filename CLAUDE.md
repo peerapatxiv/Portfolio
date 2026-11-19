@@ -45,7 +45,9 @@ Deployed to GitHub Pages at `peerapatxiv.github.io/Portfolio` via `.github/workf
 
 Push to `main` triggers the workflow automatically.
 
-**basePath quirk**: `next.config.ts` sets `basePath: "/Portfolio"` and `assetPrefix: "/Portfolio"` only when `NODE_ENV === "production"`. Local dev (`npm run dev`) runs without a base path. The static export lands in `out/`.
+Also deployed to Vercel (root path) from the same `main` branch.
+
+**basePath quirk**: `next.config.ts` sets `basePath: "/Portfolio"` and `assetPrefix: "/Portfolio"` only when `GITHUB_ACTIONS === "true"` (the GitHub Pages build). Vercel and local dev run without a base path. The static export lands in `out/`.
 
 `images: { unoptimized: true }` and `trailingSlash: true` are required by the static export + GitHub Pages combination — do not remove them.
 

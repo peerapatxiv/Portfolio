@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
-const isProd = process.env.NODE_ENV === "production";
-const basePath = isProd ? "/Portfolio" : "";
+// GitHub Pages serves the site under /Portfolio; Vercel and local dev serve it at the root.
+const isGitHubPages = process.env.GITHUB_ACTIONS === "true";
+const basePath = isGitHubPages ? "/Portfolio" : "";
 
 const nextConfig: NextConfig = {
   output: "export",
