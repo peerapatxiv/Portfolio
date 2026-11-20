@@ -1,24 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
-  <!-- Background -->
-  <rect width="40" height="40" rx="8" fill="#111110"/>
-
-  <!-- Letters span x 7–33 and y 9–31, centered in the 40×40 square -->
-
-  <!-- Left P: stem -->
-  <rect x="7" y="9" width="3" height="22" fill="#F2F2EF"/>
-  <!-- Left P: top bar -->
-  <rect x="7" y="9" width="10" height="2.8" fill="#F2F2EF"/>
-  <!-- Left P: mid bar -->
-  <rect x="7" y="17.6" width="10" height="2.8" fill="#F2F2EF"/>
-  <!-- Left P: right stem (bowl) -->
-  <rect x="14" y="9" width="3" height="11.4" fill="#F2F2EF"/>
-
-  <!-- Right P: stem -->
-  <rect x="23" y="9" width="3" height="22" fill="#F2F2EF"/>
-  <!-- Right P: top bar -->
-  <rect x="23" y="9" width="10" height="2.8" fill="#F2F2EF"/>
-  <!-- Right P: mid bar -->
-  <rect x="23" y="17.6" width="10" height="2.8" fill="#F2F2EF"/>
-  <!-- Right P: right stem (bowl) -->
-  <rect x="30" y="9" width="3" height="11.4" fill="#F2F2EF"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- { P } drawn on a 32-unit grid so it stays bold at 16px tab size -->
+  <rect width="32" height="32" rx="7" fill="#0A0A0C"/>
+  <g fill="none" stroke="#F1F1EE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9 5.5H8C6.5 5.5 5.5 6.5 5.5 8v4.5c0 1.5-1 2.5-2.5 3.5c1.5 1 2.5 2 2.5 3.5V24c0 1.5 1 2.5 2.5 2.5H9"/>
+    <path d="M23 5.5h1c1.5 0 2.5 1 2.5 2.5v4.5c0 1.5 1 2.5 2.5 3.5c-1.5 1-2.5 2-2.5 3.5V24c0 1.5-1 2.5-2.5 2.5H23"/>
+  </g>
+  <path fill="#F1F1EE" fill-rule="evenodd" d="M11 7h6.5a5.5 5.5 0 0 1 0 11H15v7h-4z M15 10.5v4h2.5a2 2 0 0 0 0-4z"/>
 </svg>

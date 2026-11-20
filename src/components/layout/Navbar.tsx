@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useLayoutEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence, animate, useMotionTemplate, useMotionValue, useTransform } from "motion/react";
-import Logo from "@/components/ui/Logo";
+import ScrambleText from "@/components/ui/ScrambleText";
 import data from "@/data/data.json";
 
 // Liquid pill: the edge moving toward the new link is quicker than the trailing edge.
@@ -169,13 +169,15 @@ export default function Navbar() {
           style={{ height: scrolled ? "66px" : "96px" }}
           aria-label="Main navigation"
         >
-          {/* Logo */}
+          {/* Wordmark */}
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="transition-opacity hover:opacity-60"
+            className="font-mono text-[15px] md:text-[18px] font-bold tracking-[-0.02em] uppercase"
+            style={{ color: "var(--fg)" }}
             aria-label="Back to top"
           >
-            <Logo size={22} style={{ color: "var(--fg)" }} />
+            <ScrambleText text={data.about.firstname} />
+            <span className="caret ml-px" style={{ color: "var(--fg-muted)" }} aria-hidden="true">_</span>
           </button>
 
           {/* Desktop nav */}

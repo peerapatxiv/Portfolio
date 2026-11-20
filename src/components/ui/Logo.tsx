@@ -11,27 +11,20 @@ export default function Logo({ size = 28, className = "", style }: LogoProps) {
     <svg
       width={size}
       height={size}
-      viewBox="0 0 40 40"
+      viewBox="1 1 30 30"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      aria-label="PP — Peerapat Padtawaro"
+      aria-label="Peerapat Padtawaro"
       className={className}
       style={style}
     >
-      {/* Left P */}
-      <rect x="4" y="6" width="3.5" height="28" fill="currentColor" />
-      <rect x="4" y="6" width="13" height="3.5" fill="currentColor" />
-      <rect x="4" y="17.25" width="13" height="3.5" fill="currentColor" />
-      <rect x="13.5" y="6" width="3.5" height="14.75" fill="currentColor" />
-
-      {/* Right P */}
-      <rect x="22.5" y="6" width="3.5" height="28" fill="currentColor" />
-      <rect x="22.5" y="6" width="13" height="3.5" fill="currentColor" />
-      <rect x="22.5" y="17.25" width="13" height="3.5" fill="currentColor" />
-      <rect x="32" y="6" width="3.5" height="14.75" fill="currentColor" />
-
-      {/* Center accent dot */}
-      <rect x="18.25" y="29" width="3.5" height="5" rx="1" fill="currentColor" opacity="0.35" />
+      {/* { P }: a geometric P (for Peerapat) wrapped in code braces.
+          Same 32-unit grid as src/app/icon.svg, without the tile. */}
+      <g stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M9 5.5H8C6.5 5.5 5.5 6.5 5.5 8v4.5c0 1.5-1 2.5-2.5 3.5c1.5 1 2.5 2 2.5 3.5V24c0 1.5 1 2.5 2.5 2.5H9" />
+        <path d="M23 5.5h1c1.5 0 2.5 1 2.5 2.5v4.5c0 1.5 1 2.5 2.5 3.5c-1.5 1-2.5 2-2.5 3.5V24c0 1.5-1 2.5-2.5 2.5H23" />
+      </g>
+      <path fill="currentColor" fillRule="evenodd" d="M11 7h6.5a5.5 5.5 0 0 1 0 11H15v7h-4z M15 10.5v4h2.5a2 2 0 0 0 0-4z" />
     </svg>
   );
 }

@@ -14,7 +14,7 @@ const LINES = ["Let's build", "something", "together."];
 
 function Row({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <div className="grid grid-cols-[7rem_1fr] gap-4 py-4" style={{ borderBottom: "1px solid var(--border)" }}>
+    <div className="grid grid-cols-1 sm:grid-cols-[7rem_1fr] gap-1 sm:gap-4 py-4" style={{ borderBottom: "1px solid var(--border)" }}>
       <dt className="text-[13px]" style={{ color: "var(--fg-muted)" }}>{label}</dt>
       <dd className="text-[15px] min-w-0 break-words" style={{ color: "var(--fg)" }}>{children}</dd>
     </div>

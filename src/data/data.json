@@ -13,7 +13,7 @@
     "linkedin": "https://www.linkedin.com/in/peerapatpadt/",
     "github": "https://github.com/peerapatxiv",
     "profileTitle": "ABOUT",
-    "bio": "Software engineer on the integration team at SCB TechX, building and supporting API services behind an API gateway. Before that I spent two years building web apps and interactive brand experiences. I care about clean, maintainable code and tools that make complex systems easier to work with."
+    "bio": "Hey, welcome! 👋 I'm a Software Engineer in Bangkok, building API services at SCB TechX and turning complex problems into simple, practical tools. Offline, you'll find me out on a run, exploring new places, or by the sea."
   },
   "experience": {
     "title": "EXPERIENCE",
@@ -161,8 +161,7 @@
           "Developer tool",
           "Open source"
         ],
-        "featured": true,
-        "demo": "https://caserviceexplorer.vercel.app"
+        "featured": true
       },
       {
         "name": "Task Tracker",

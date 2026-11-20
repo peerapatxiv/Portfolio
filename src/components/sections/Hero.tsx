@@ -58,11 +58,11 @@ function ProfileResponse({ data, current, degree }: HeroProps) {
 
   return (
     <div
-      className="rounded-2xl overflow-hidden text-[13px] leading-[1.75] font-mono backdrop-blur-xl"
+      className="rounded-2xl overflow-hidden text-[12px] sm:text-[13px] leading-[1.75] font-mono backdrop-blur-xl"
       style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
     >
       <div
-        className="flex items-center justify-between gap-4 px-5 py-3"
+        className="flex items-center justify-between gap-4 px-4 sm:px-5 py-3"
         style={{ borderBottom: "1px solid var(--border)" }}
       >
         <span style={{ color: "var(--fg)" }}>
@@ -83,12 +83,12 @@ function ProfileResponse({ data, current, degree }: HeroProps) {
           </motion.span>
         </span>
       </div>
-      <dl className="px-5 py-4">
+      <dl className="px-4 sm:px-5 py-4">
         <span style={{ color: "var(--fg-muted)" }}>{"{"}</span>
         {rows.map(([key, value], i) => (
           <motion.div
             key={key}
-            className="flex gap-2 pl-4 min-w-0"
+            className="flex gap-2 pl-3 sm:pl-4 min-w-0"
             initial={{ opacity: 0, x: -10, filter: "blur(4px)" }}
             animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
             transition={{ duration: 0.45, ease: EASE.out, delay: ROWS_DELAY + i * 0.09 }}
@@ -108,6 +108,52 @@ function ProfileResponse({ data, current, degree }: HeroProps) {
         <span className="caret inline-block w-[7px] h-[14px] ml-1 align-[-2px]" style={{ background: "var(--accent)" }} aria-hidden="true" />
       </dl>
     </div>
+  );
+}
+
+/**
+ * The bio, read as a greeting: the opening line ("Hey, welcome!") is bright with
+ * a waving hand, the rest is softer, and every word blurs in one after another.
+ */
+function Bio({ text }: { text: string }) {
+  const match = text.match(/^([^!?.]*[!?.])\s+([\s\S]*)$/);
+  const greeting = match ? match[1] : "";
+  // A 👋 written right after the greeting in data.json becomes the animated hand
+  const rest = (match ? match[2] : text).replace(/^👋\s*/u, "");
+
+  let n = 0;
+  const words = (str: string) =>
+    str.split(" ").flatMap((w, i) => [
+      <motion.span
+        key={`${w}-${i}`}
+        className="inline-block"
+        initial={{ opacity: 0, y: 8, filter: "blur(6px)" }}
+        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+        transition={{ duration: 0.5, ease: EASE.out, delay: 0.35 + n++ * 0.035 }}
+      >
+        {w}
+      </motion.span>,
+      " ",
+    ]);
+
+  return (
+    <p className="text-[16px] sm:text-[17px] leading-relaxed mt-8 max-w-[34rem]" style={{ color: "var(--fg-secondary)" }}>
+      {greeting && (
+        <span className="font-semibold" style={{ color: "var(--fg)" }}>
+          {words(greeting)}
+          <motion.span
+            className="wave inline-block origin-[70%_70%]"
+            aria-hidden="true"
+            initial={{ opacity: 0, scale: 0.4 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, ease: EASE.out, delay: 0.4 }}
+          >
+            👋
+          </motion.span>{" "}
+        </span>
+      )}
+      {words(rest)}
+    </p>
   );
 }
 
@@ -169,13 +215,7 @@ export default function Hero(props: HeroProps) {
             </span>
           </h1>
 
-          <motion.p
-            className="text-[16px] leading-relaxed mt-8 max-w-[34rem]"
-            style={{ color: "var(--fg-secondary)" }}
-            {...enter(0.2)}
-          >
-            {data.bio}
-          </motion.p>
+          <Bio text={data.bio} />
 
           <motion.div className="flex flex-wrap items-center gap-3 mt-10" {...enter(0.3)}>
             <Magnetic>
