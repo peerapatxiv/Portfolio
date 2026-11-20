@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform } from "motion/react";
 import { About, EducationItem, ExperienceItem } from "@/types/portfolio";
 import { EASE, DUR } from "@/lib/motion";
 import Magnetic from "@/components/ui/Magnetic";
+import { asset } from "@/lib/asset";
 
 interface HeroProps {
   data: About;
@@ -242,6 +243,7 @@ export default function Hero(props: HeroProps) {
             {[
               { label: "GitHub", href: data.github },
               { label: "LinkedIn", href: data.linkedin },
+              { label: "Download CV", href: data.cv && asset(data.cv) },
             ].filter(l => l.href).map(l => (
               <li key={l.label}>
                 <a

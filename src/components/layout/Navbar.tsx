@@ -4,6 +4,9 @@ import { useState, useEffect, useLayoutEffect, useRef, useCallback } from "react
 import { motion, AnimatePresence, animate, useMotionTemplate, useMotionValue, useTransform } from "motion/react";
 import ScrambleText from "@/components/ui/ScrambleText";
 import data from "@/data/data.json";
+import { asset } from "@/lib/asset";
+
+const CV_HREF = data.about.cv ? asset(data.about.cv) : "";
 
 // Liquid pill: the edge moving toward the new link is quicker than the trailing edge.
 const LEAD  = { type: "spring" as const, stiffness: 260, damping: 30, mass: 0.9 };
@@ -265,14 +268,27 @@ export default function Navbar() {
             })}
           </ul>
 
-          {/* Desktop CTA */}
-          <a
-            href={`mailto:${data.about.email}`}
-            className="hidden md:inline-flex items-center gap-1.5 text-[12px] font-semibold rounded-full px-4 py-2 transition-[filter] hover:brightness-110"
-            style={{ background: "var(--accent)", color: "var(--on-accent)" }}
-          >
-            Email me
-          </a>
+          {/* Desktop CTAs */}
+          <div className="hidden md:flex items-center gap-2">
+            {CV_HREF && (
+              <a
+                href={CV_HREF}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-[12px] font-semibold rounded-full px-4 py-2 transition-colors hover:border-[var(--fg)]"
+                style={{ border: "1px solid var(--border-strong)", color: "var(--fg)" }}
+              >
+                CV
+              </a>
+            )}
+            <a
+              href={`mailto:${data.about.email}`}
+              className="inline-flex items-center gap-1.5 text-[12px] font-semibold rounded-full px-4 py-2 transition-[filter] hover:brightness-110"
+              style={{ background: "var(--accent)", color: "var(--on-accent)" }}
+            >
+              Email me
+            </a>
+          </div>
 
           {/* Mobile hamburger */}
           <button
@@ -331,17 +347,33 @@ export default function Navbar() {
                   </motion.li>
                 ))}
               </ul>
-              <motion.a
-                href={`mailto:${data.about.email}`}
-                className="mt-10 inline-flex text-[13px] font-semibold rounded-full px-5 py-2.5"
-                style={{ background: "var(--accent)", color: "var(--on-accent)" }}
+              <motion.div
+                className="mt-10 flex flex-wrap gap-3"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.28, duration: 0.3 }}
-                onClick={() => setMenuOpen(false)}
               >
-                Email me
-              </motion.a>
+                <a
+                  href={`mailto:${data.about.email}`}
+                  className="inline-flex text-[13px] font-semibold rounded-full px-5 py-2.5"
+                  style={{ background: "var(--accent)", color: "var(--on-accent)" }}
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Email me
+                </a>
+                {CV_HREF && (
+                  <a
+                    href={CV_HREF}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex text-[13px] font-semibold rounded-full px-5 py-2.5"
+                    style={{ border: "1px solid var(--border-strong)", color: "var(--fg)" }}
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    Download CV
+                  </a>
+                )}
+              </motion.div>
             </nav>
           </motion.div>
         )}

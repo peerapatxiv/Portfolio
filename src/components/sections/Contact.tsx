@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { motion, useInView } from "motion/react";
 import { About, Languages } from "@/types/portfolio";
 import { EASE, DUR } from "@/lib/motion";
+import { asset } from "@/lib/asset";
 
 interface ContactProps {
   data: About;
@@ -104,6 +105,13 @@ export default function Contact({ data, languages }: ContactProps) {
               <Row label="GitHub">
                 <a href={data.github} target="_blank" rel="noopener noreferrer" className={linkClass}>
                   {data.github.replace(/^https?:\/\//, "")}
+                </a>
+              </Row>
+            )}
+            {data.cv && (
+              <Row label="CV">
+                <a href={asset(data.cv)} target="_blank" rel="noopener noreferrer" className={linkClass}>
+                  Download PDF
                 </a>
               </Row>
             )}

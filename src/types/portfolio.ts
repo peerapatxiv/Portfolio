@@ -13,6 +13,8 @@ export interface About {
   phone: string;
   linkedin?: string;
   github?: string;
+  /** Path to the CV PDF under public/, e.g. "/cv/name.pdf" */
+  cv?: string;
   profileTitle: string;
   bio: string;
 }
