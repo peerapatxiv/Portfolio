@@ -154,6 +154,18 @@
     "description": "From API gateway tools for Kong and Layer7 to interactive brand experiences for live events in Bangkok and The Hague.",
     "items": [
       {
+        "name": "Kudos",
+        "period": "Sep - Nov 2026",
+        "description": "Built a running training app that turns a marathon training plan into a daily guide. It shows today's workout with target paces, lays out the whole plan on a calendar, and counts down to each race. Runners can log their runs and how they felt, then follow their weekly mileage and progress on charts as race day gets closer.",
+        "link": "https://github.com/peerapatxiv/Kudos",
+        "tags": [
+          "Web app",
+          "Running"
+        ],
+        "featured": true,
+        "demo": "https://kudos-run.vercel.app/"
+      },
+      {
         "name": "Service Explorer",
         "period": "Nov 2026",
         "description": "Built a browser-based explorer for Layer7 API Gateway service exports (service.rtf or RESTMAN XML). Parses the file locally in a web worker so nothing is uploaded, then surfaces an overview of required scopes, backends and shared policies, flags likely issues such as scope typos or enabled test APIs, and lets you search, filter and inspect each service's route, assertions and policy XML, with CSV export.",
